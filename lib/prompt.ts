@@ -87,7 +87,7 @@ function CHART_GENERATION_PROMPT(question:string, data:string)
 
 function CYPHER_GENERATION_PROMPT(schema:string, fewshot:string, historyOfConversation:string, userQuestion:string)
 {
-    const fewshotSection = fewshot && fewshot.trim() !== "" ?
+    const fewshotSection = fewshot && fewshot.length > 0 ?
         `<FewShotExamples>
         ${fewshot}
         </FewShotExamples>`

@@ -58,7 +58,7 @@ const ApplicationContent: NextPage = () => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
   const [anchorElShowModel, setAnchorElShowModel] = React.useState<HTMLButtonElement | null>(null);
   const [currentDomainImage, setCurrentDomainImage] = useState("/realtorchat.png");
-  const [openAIModel,setOpenAIModel] = useState('gpt=4');
+  const [openAIModel,setOpenAIModel] = useState('gpt-4');
   const [llmKey, setLLMKey] = useState();
   const [isUserDefinedAgent, setIsUserDefinedAgent] = useState();
   const [sampleQuestions, setSampleQuestions] = useState([
@@ -133,27 +133,31 @@ const ApplicationContent: NextPage = () => {
     await processDomainChange(key);    
   };
 
-  function extractQuestions(input:string) {
-    const asks = input?.split("Ask:").slice(1); // Split by "Ask:" and remove the first element (empty string before the first "Ask:")
-    return asks?.map((ask, index) => {
-      const question = ask?.split("Cypher Query:")[0].trim().replace("Ask:",""); // Isolate the question
+  function extractQuestions(input: string | undefined | null) {
+    if (!input || typeof input !== 'string') {
+      return [];
+    }
+  
+    const asks = input.split("Ask:").slice(1); // Split by "Ask:" and remove the first element (empty string before the first "Ask:")
+    return asks.map((ask, index) => {
+      const question = ask.split("Cypher Query:")[0].trim().replace("Ask:", ""); // Isolate the question
       return {
-          question: question,
-          priority: index + 1 // Assign priority based on order
+        question: question,
+        priority: index + 1 // Assign priority based on order
       };
-  });
-}
+    });
+  }
 
   const processDomainChange = async (key: string) => {
       let agent:any = agents.find(agent => agent?.key === key);
       if (agent) {
         setContext("");
         setUserInput("");
-        setInitialContext(agent.promptParts.dataModel);    
-        setFewShot(agent.promptParts.fewshot);
+        setInitialContext(agent.schema);    
+        setFewShot(agent.fewshot);
         setCurrentDomainImage(agent.icon);
         setDbSchemaImageUrl(agent.dataModelPath);
-        setOpenAIModel(process.env.NEXT_PUBLIC_SMALL_CONTEXT_OPENAI_MODEL as string);
+        setOpenAIModel(process.env.OPENAI_MODEL as string);
         let keys = await getLLMKey(agent)
         setLLMKey(keys);
         setIsUserDefinedAgent(agent.userDefined)
@@ -162,6 +166,11 @@ const ApplicationContent: NextPage = () => {
           else{
             setSampleQuestions({})
           }
+        // Adding console logs to check values
+        console.log("Agent found:", agent);
+        console.log("Initial context:", agent.promptParts.dataModel);
+        console.log("Fewshot examples:", agent.promptParts.fewshot);
+        console.log("Sample questions:", sampleQuestions);
       } else {
         throw new Error(`Unable to find agent with key '${key}'`);
       }
