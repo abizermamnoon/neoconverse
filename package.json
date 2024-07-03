@@ -45,7 +45,7 @@
     "mui-markdown": "^1.1.13",
     "neo4j-driver": "^5.6.0",
     "next": "^13.3.1",
-    "openai": "^4.29.2",
+    "openai": "^4.52.2",
     "parse-neo4j": "^0.6.11",
     "react": "18.2.0",
     "react-dom": "18.2.0",

@@ -138,7 +138,28 @@ ${userQuestion}
     return template;
 }
 
+function GOOGLE_SEARCH_PROMPT(userQuery: string) {
+    const prompt = `
+    You are a helpful assistant tasked with conducting Google searches to find relevant information based on the given query. Your job is to generate a search prompt that can be used to retrieve the most accurate and useful results from Google.
+
+    Instructions:
+    1. Understand the User Query: Carefully read the user’s query to grasp what information they are seeking.
+    2. Construct a Search-Friendly Query: Transform the user query into a well-structured search query that is likely to yield the best results. Use quotes for exact phrases, keywords, and exclude unnecessary words.
+    3. Focus on Relevance: Ensure that the search query is precise and focused on retrieving relevant information. Avoid overly broad or vague terms.
+
+    Example Transformation:
+    User Query: What are the latest advancements in AI technology?
+    Search-Friendly Query: "latest advancements in AI technology"
+
+    Given the pattern illustrated in the example above, generate a search-friendly query for the following user query:
+    <UserQuery>${userQuery}</UserQuery>
+    Your Objective: Convert the user query into a search-friendly format that can be used on Google to obtain relevant and accurate information. Ensure that the query is well-structured and focused on the user's intent.
+    `;
+    return prompt;
+}
+
 export {
-    GRACEFUL_MESSAGE_PROMPT, GRACEFUL_HUGE_TEXT_PROMPT, GRACEFUL_CHART_FAILURE_PROMPT, 
-    HUMAN_READABLE_MESSAGE_PROMPT, CHART_GENERATION_PROMPT, CYPHER_GENERATION_PROMPT
+    GRACEFUL_MESSAGE_PROMPT, GRACEFUL_HUGE_TEXT_PROMPT, GRACEFUL_CHART_FAILURE_PROMPT,
+    HUMAN_READABLE_MESSAGE_PROMPT, CHART_GENERATION_PROMPT, CYPHER_GENERATION_PROMPT,
+    GOOGLE_SEARCH_PROMPT
 }

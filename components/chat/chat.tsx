@@ -15,6 +15,7 @@ import ArticleIcon from '@mui/icons-material/Article';
 import CodeSharpIcon from '@mui/icons-material/CodeSharp';
 import DonutSmallIcon from '@mui/icons-material/DonutSmall';
 import ReportOutlinedIcon from '@mui/icons-material/ReportOutlined';
+import GoogleIcon from '@mui/icons-material/Google';
 import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ListItem from '@mui/material/ListItem';
@@ -25,6 +26,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
+import StorageIcon from '@mui/icons-material/Storage';
 
 import { MuiMarkdown, getOverrides } from 'mui-markdown';
 
@@ -45,6 +47,7 @@ const Chat = (props) => {
         loading,
         messages,
         respondWithChart,
+        googleSearch,
         runCypher,
         sampleQuestions,
         scrollToBios,
@@ -52,6 +55,7 @@ const Chat = (props) => {
         setLoading,
         setMessages,
         setRespondWithChart,
+        setGoogleSearch,
         setUserInput,
         setBioRef,
         styleProps,
@@ -296,6 +300,15 @@ const Chat = (props) => {
                                 <Tooltip title="Respond with Text">
                                     <ArticleIcon sx={{ cursor: "pointer" }} onClick={() => { setRespondWithChart(!respondWithChart) }} />
                                 </Tooltip>
+                            }
+                            {googleSearch  ?
+                                    <Tooltip title="Database Search">
+                                        <StorageIcon sx={{ cursor: "pointer" }} onClick={() => { setGoogleSearch(!googleSearch) }} />
+                                    </Tooltip>
+                                    :
+                                    <Tooltip title="Google Search">
+                                        <GoogleIcon sx={{ cursor: "pointer" }} onClick={() => { setGoogleSearch(!googleSearch) }} />
+                                    </Tooltip>
                             }
                             <Tooltip title="Send Message">
                                 <SendIcon sx={{ cursor: "pointer", paddingLeft: "10px", paddingRight: "10px" }} onClick={(e) => {
