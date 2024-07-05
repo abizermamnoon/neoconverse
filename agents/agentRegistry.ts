@@ -154,7 +154,7 @@ export const initAgents = async () => {
     // Assuming localAgents is already defined somewhere in your code
     console.log("Existing Local Agents: ", localAgents);
 
-    localAgents = newLocalAgents.concat(localAgents);
+    localAgents = localAgents;
 
     console.log("Concatenated Local Agents: ", localAgents);
 }
