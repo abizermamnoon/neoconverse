@@ -1,0 +1,11 @@
+{
+    "routes": [
+      {
+        "src": "/api/llm",
+        "methods": ["POST"],
+        "headers": ["Content-Type"],
+        "allow": ["*"]
+      }
+    ]
+  }
+  

@@ -18,6 +18,7 @@ const handler = async (req: Request): Promise<Response> => {
   };
 
   return talkToLLM({ prompt, provider:process.env.DEFUALT_PROVIDER, model: process.env.DEFUALT_MODEL, llmKeys: process.env.OPENAI_API_KEY });
+
 }
 
 export default handler;

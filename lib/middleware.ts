@@ -75,6 +75,7 @@ export async function GenerateContent(
     } else {
         console.log('calling /api/llm');
         llmResponse = await invokeService("/api/llm", llmRequestParams);
+        // llmResponse = talkToLLM({ prompt, provider:process.env.DEFUALT_PROVIDER, model: process.env.DEFUALT_MODEL, llmKeys: process.env.OPENAI_API_KEY });
         console.log('llmResponse:', llmResponse);
     }
     
