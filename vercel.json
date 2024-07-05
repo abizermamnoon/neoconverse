@@ -1,9 +1,8 @@
 {
-    "routes": [
-      { "handle": "filesystem" },
+    "rewrites": [
       {
-        "src": "/api/llm",
-        "dest": "/api/llm.ts"
+        "source": "/api/llm",
+        "destination": "lib/middleware.ts"
       }
     ]
   }
