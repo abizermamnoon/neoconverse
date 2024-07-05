@@ -7,13 +7,17 @@ export const config = {
 
 const handler = async (req: Request): Promise<Response> => {
 
-    const { prompt, provider, model } = (await req.json()) as {
-      prompt?: string;
-      provider?:string;
-      model:string;
-    };
+  if (req.method !== 'POST') {
+    return new Response("Method Not Allowed", { status: 405 });
+  }
 
-    return talkToLLM({ prompt, provider:process.env.DEFUALT_PROVIDER, model: process.env.DEFUALT_MODEL, llmKeys: process.env.OPENAI_API_KEY });
+  const { prompt, provider, model } = (await req.json()) as {
+    prompt?: string;
+    provider?:string;
+    model:string;
+  };
+
+  return talkToLLM({ prompt, provider:process.env.DEFUALT_PROVIDER, model: process.env.DEFUALT_MODEL, llmKeys: process.env.OPENAI_API_KEY });
 }
 
 export default handler;
