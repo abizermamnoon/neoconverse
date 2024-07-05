@@ -75,6 +75,7 @@ export async function GenerateContent(
     } else {
         console.log('calling /api/llm');
         llmResponse = await invokeService("/api/llm", llmRequestParams);
+        console.log('llmResponse:', llmResponse);
     }
     
     if(generateCypher || googleSearch)
