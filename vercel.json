@@ -1,11 +1,9 @@
 {
     "routes": [
+      { "handle": "filesystem" },
       {
         "src": "/api/llm",
-        "methods": ["POST"],
-        "headers": ["Content-Type"],
-        "allow": ["*"]
+        "dest": "/api/llm.ts"
       }
     ]
   }
-  
