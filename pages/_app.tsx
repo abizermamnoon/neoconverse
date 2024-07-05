@@ -40,7 +40,7 @@ function MainApp({ Component, pageProps }: AppProps) {
     //   <Component {...pageProps}/>
     // </UserProvider>
     <>
-      {segmentCode()}
+      {/* {segmentCode()} */}
       
       <Component {...pageProps}/>
       

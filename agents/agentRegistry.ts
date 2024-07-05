@@ -147,8 +147,16 @@ export const getAgentByKey = (key: string) => localAgents.find(agent => agent.ke
 export const getAgentByName = (title: string) => localAgents.find(agent => agent.title === title);
 
 export const initAgents = async () => {
-    // remoteAgents = await getRemoteAgents();
-    localAgents = loadLocalAgents().concat(localAgents);;
+    // Assuming loadLocalAgents returns a list of agents
+    let newLocalAgents = loadLocalAgents();
+    console.log("New Local Agents: ", newLocalAgents);
+
+    // Assuming localAgents is already defined somewhere in your code
+    console.log("Existing Local Agents: ", localAgents);
+
+    localAgents = newLocalAgents.concat(localAgents);
+
+    console.log("Concatenated Local Agents: ", localAgents);
 }
 
 // export const getRemoteAgents = async () => {
