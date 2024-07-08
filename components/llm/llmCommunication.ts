@@ -40,6 +40,8 @@ export const talkToLLM = async ({ prompt, provider, model, llmKeys, llmFlags = {
             const response = await openai.chat.completions.create({
                 model: model,
                 max_tokens: 2000,
+                temperature: 0,
+                top_p: 1,
                 stream: true,
                 messages:
                 [
