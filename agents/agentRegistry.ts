@@ -96,7 +96,7 @@ const initialAgentData = {
             { question: 'Who works at Gibbons law firm?', answer: "MATCH (lf:LawFirm)-[:WORKS_AT]-(a2:Applicant) WHERE lf.Name ='Gibbons' return a2 LIMIT 25" },
             { question: 'Where did Matthew Wochok earn his undergraduate degree?', answer: "MATCH(a2:Applicant) where a2.LastName ='Wochok' and a2.FirstName ='Matthew' Return a2.Undergrad LIMIT 1" },
             { question: 'When did Matthew Wochok graduate from Georgetown University?', answer: "MATCH(a2:Applicant) where a2.LastName ='Wochok' and a2.FirstName ='Matthew' Return a2.JdYear LIMIT 1" },
-            { question: 'What candidate graduated from Georgetown University in 2010?', answer: "MATCH (s:School)-[:STUDIED_AT]-(a2:Applicant) WHERE s.OriginalName ='Georgetown University' MATCH (a2: Applicant) where a2.JdYear=2010 return a2, s, a2.JdYear LIMIT 25" },
+            { question: 'What candidate graduated from Georgetown University in 2010?', answer: "MATCH (s:School)-[:STUDIED_AT]-(a2:Applicant) WHERE s.OriginalName ='Georgetown University' MATCH (a2: Applicant) where a2.JdYear=2010 return a2, s LIMIT 25" },
             { question: 'Who at Morris Manning & Martin LLP law firm studied at Harvard University?', answer: "MATCH (lf:LawFirm)-[:WORKS_AT]-(a2:Applicant) WHERE lf.Name ='Morris Manning & Martin LLP' MATCH (s:School)-[:STUDIED_AT]-(a2:Applicant) WHERE s.OriginalName ='Harvard' return a2 LIMIT 25" },
             { question: 'Who at Gibbons law firm studied at Georgetown University?', answer: "MATCH (lf:LawFirm)-[:WORKS_AT]-(a2:Applicant) WHERE lf.Name ='Gibbons' MATCH (s:School)-[:STUDIED_AT]-(a2:Applicant) WHERE s.OriginalName ='Georgetown University' return a2 LIMIT 25" },
             { question: 'What candidate earned their undergraduate degree from U OF VIRGINIA and graduated from Georgetown University in 2010?', answer: "MATCH (s:School)-[:STUDIED_AT]-(a2:Applicant) WHERE s.OriginalName ='Georgetown University' MATCH (a2: Applicant) where a2.JdYear=2010 MATCH (a2: Applicant) where a2.Undergrad='U OF VIRGINIA' return a2, s LIMIT 25" },
@@ -131,7 +131,7 @@ const initialAgentData = {
         dataModel: '',
         fewshot: []
     },
-    openAIModel: 'gpt-4-turbo',
+    openAIModel: 'gpt-4o',
     googleModel: '',
     awsModel: '',
     openAIKey: process.env.OPENAI_API_KEY

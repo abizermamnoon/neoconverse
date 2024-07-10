@@ -458,7 +458,8 @@ export async function GenerateContent(
     generateCypher:boolean,
     respondwithChart:boolean,
     llmDetails: LLMDetails,
-    googleSearch: boolean
+    googleSearch: boolean,
+    crystalKnows: boolean
 ){
     let response ;
     const llmRequestParams = {provider:llmDetails.provider, model:llmDetails.model, prompt:prompt }
@@ -486,7 +487,7 @@ export async function GenerateContent(
         console.log('llmResponse:', llmResponse);
     }
     
-    if(generateCypher || googleSearch)
+    if(generateCypher || googleSearch || crystalKnows)
     {
         const result = await readStream(llmResponse);
         response = await cypherCleanup(result);
@@ -532,6 +533,35 @@ export async function ExecuteGoogleSearch(invokeFromClient:boolean,
         jsonResponse = JSON.parse(response);
     }
     return jsonResponse;
+}
+
+export async function ExecuteCrystalKnows(invokeFromClient:boolean,
+  isSaveConvo:boolean,
+  agentName:string, 
+  searchQuery:string, 
+  options: {},
+  
+){
+  let jsonResponse = null;
+  if (invokeFromClient) {
+      let agent = getAgentByName(agentName);
+      if (!agent) {
+          throw new Error(`Can't find agent '${agentName}'`);
+      }
+      // console.log('searchQuery:', searchQuery)
+      let cypherResponse = await runCrystalSearch(searchQuery);
+      console.log('response received')
+      // adding result key so it looks like it came from the backend
+      jsonResponse = {
+          result: cypherResponse
+      }
+  } else {
+      const neoRequestParams = {agentName:agentName, cypherQuery:searchQuery, options:options}
+      const neoResponse = await invokeService("/api/neoapi", neoRequestParams);
+      const response = await readStream(neoResponse);
+      jsonResponse = JSON.parse(response);
+  }
+  return jsonResponse;
 }
 
 export async function ExecuteCypher(

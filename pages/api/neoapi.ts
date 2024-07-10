@@ -8,6 +8,7 @@ import { runCypher } from "../../components/database/callNeo";
 import Configuration from "openai";
 import { OpenAI } from "openai";
 import { lawfirmrank } from "../../lib/middleware";
+import axios from 'axios';
 
 export const config = {
   runtime: "edge",
@@ -76,7 +77,16 @@ const run = async (agentName: string, cypher: string, options: Map<string, any> 
     // console.log('searchQuery:', searchQuery)
     return runSearch(searchQuery);
     console.log('response received')
-  } else {
+  } else if (options.get('crystalKnows')) {
+    console.log('Retrieving Crystal Knows Profile')
+    console.log('cypher:', cypher)
+    // Extract the content within single quotes
+    const match = cypher.match(/'([^']+)'/);
+    const searchQuery = match ? match[1] : cypher; // Default to cypher if no match
+    // console.log('searchQuery:', searchQuery)
+    return runCrystalSearch(searchQuery);
+    console.log('response received')
+  }  else {
     console.log('Not Performing google search')
     let neoAgent = NeoAgents.get(agentName) || NeoDatabaseBackendConfig;
 
@@ -141,6 +151,45 @@ export const runSearch = async (searchQuery: string) => {
 
   return responseData;
 }
+
+export const runCrystalSearch = async (searchQuery) => {
+  try {
+    // Extract URL and Authorization token from searchQuery
+    const urlMatch = searchQuery.match(/curl --location "([^"]+)"/);
+    if (!urlMatch) {
+      throw new Error("Error: URL not found in search query.");
+    }
+    const url = urlMatch[1];
+    console.log('url match:', url)
+
+    const tokenMatch = searchQuery.match(/Authorization: Bearer ([^"]+)/);
+    if (!tokenMatch) {
+      throw new Error("Error: Authorization token not found in search query.");
+    }
+    const authToken = tokenMatch[1];
+    console.log('authToken:', authToken)
+
+    // Make HTTP GET request using axios
+    const headers = {
+      Authorization: `Bearer ${authToken}`
+    };
+
+    const response = await axios.get(url, { headers });
+    console.log('response:', response.data); // Log the response data
+
+    return { query: searchQuery, response: response.data };
+  } catch (error) {
+    // Handle errors
+    console.error('Error:', error.message);
+    // Extract the curl command from the query
+    const curlCommandMatch = searchQuery.match(/curl --location "[^"]+" --header "Authorization: Bearer [^"]+"/);
+    const curlCommand = curlCommandMatch ? curlCommandMatch[0] : '';
+
+    // Return error message along with the curl command
+    return { query: searchQuery, curlCommand };
+  }
+};
+
 
 const handler = async (req: Request): Promise<Response> => {
   //res.status(200).json({ name: 'John Doe' })

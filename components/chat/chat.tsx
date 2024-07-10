@@ -14,6 +14,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import ArticleIcon from '@mui/icons-material/Article';
 import CodeSharpIcon from '@mui/icons-material/CodeSharp';
 import DonutSmallIcon from '@mui/icons-material/DonutSmall';
+import InfoTwoToneIcon from '@mui/icons-material/InfoTwoTone';
 import ReportOutlinedIcon from '@mui/icons-material/ReportOutlined';
 import GoogleIcon from '@mui/icons-material/Google';
 import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
@@ -48,6 +49,7 @@ const Chat = (props) => {
         messages,
         respondWithChart,
         googleSearch,
+        crystalKnows,
         runCypher,
         sampleQuestions,
         scrollToBios,
@@ -56,6 +58,7 @@ const Chat = (props) => {
         setMessages,
         setRespondWithChart,
         setGoogleSearch,
+        setCrystalKnows,
         setUserInput,
         setBioRef,
         styleProps,
@@ -159,7 +162,7 @@ const Chat = (props) => {
                                                     variant="caption"
                                                     color="text.primary"
                                                 >
-                                                    Hey there! Talent Engines Bot uses generative AI to help you communicate with Talent Engines neo4j database using natural language
+                                                    Hey there! Iggy the bot uses generative AI to help you communicate with Talent Engines neo4j database using natural language
                                                 </Typography>
                                                 {" "}
                                             </React.Fragment>
@@ -309,6 +312,16 @@ const Chat = (props) => {
                                     <Tooltip title="Google Search">
                                         <GoogleIcon sx={{ cursor: "pointer" }} onClick={() => { setGoogleSearch(!googleSearch) }} />
                                     </Tooltip>
+                            }
+                            {crystalKnows ?
+                                <Tooltip title="Database Search">
+                                    <StorageIcon sx={{ cursor: "pointer" }} onClick={() => { setCrystalKnows(!crystalKnows) }} />
+                                </Tooltip>
+                                :
+                                <Tooltip title="Crystal Knows">
+                                    <InfoTwoToneIcon sx={{ cursor: "pointer" }} onClick={() => { setCrystalKnows(!crystalKnows) }} />
+                                </Tooltip>
+
                             }
                             <Tooltip title="Send Message">
                                 <SendIcon sx={{ cursor: "pointer", paddingLeft: "10px", paddingRight: "10px" }} onClick={(e) => {

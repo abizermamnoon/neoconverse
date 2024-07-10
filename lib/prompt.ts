@@ -162,8 +162,30 @@ function GOOGLE_SEARCH_PROMPT(userQuery: string) {
     return prompt;
 }
 
+function CONVERT_TO_CURL_PROMPT(userQuery: string) {
+    const prompt = `
+    You are a helpful assistant tasked with converting LinkedIn URLs into a specific curl command format for API requests. Your job is to generate a curl command that includes the provided LinkedIn URL and the necessary authorization header.
+
+    Instructions:
+    1. Understand the User Query: Carefully read the user’s LinkedIn URL to ensure it is correctly formatted.
+    2. Construct the Curl Command: Transform the LinkedIn URL into a curl command using the following format:
+       \`\`\`
+       curl --location "https://api.crystalknows.com/v1/profiles?linkedin_url=<encoded_linkedin_url>" --header "Authorization: Bearer a50001c7f4ba33c79ea88720a8f38603"
+       \`\`\`
+    3. URL Encode: Ensure that the LinkedIn URL is properly URL encoded before inserting it into the curl command.
+
+    Example Transformation:
+    User Query: https://www.linkedin.com/in/abizer-mamnoon/
+    Curl Command: curl --location "https://api.crystalknows.com/v1/profiles?linkedin_url=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fabizer-mamnoon%2F" --header "Authorization: Bearer a50001c7f4ba33c79ea88720a8f38603"
+
+    Given the pattern illustrated in the example above, generate a curl command for the following user query:
+    <UserQuery>${userQuery}</UserQuery>
+    Your Objective: Convert the user query into a curl command format, ensuring that the LinkedIn URL is URL encoded and properly included in the command.`;
+    return prompt;
+}
+
 export {
     GRACEFUL_MESSAGE_PROMPT, GRACEFUL_HUGE_TEXT_PROMPT, GRACEFUL_CHART_FAILURE_PROMPT,
     HUMAN_READABLE_MESSAGE_PROMPT, CHART_GENERATION_PROMPT, CYPHER_GENERATION_PROMPT,
-    GOOGLE_SEARCH_PROMPT
+    GOOGLE_SEARCH_PROMPT, CONVERT_TO_CURL_PROMPT
 }
