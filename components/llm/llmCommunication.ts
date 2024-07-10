@@ -45,7 +45,7 @@ export const talkToLLM = async ({ prompt, provider, model, llmKeys, llmFlags = {
                 stream: true,
                 messages:
                 [
-                    {"role": "system", "content": "You are a helpful assistant."},
+                    {"role": "system", "content": "You are an expert at writing neo4j queries"},
                     {"role": "user", "content": prompt}
                 ],
             });

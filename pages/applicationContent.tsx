@@ -230,6 +230,8 @@ const ApplicationContent: NextPage = () => {
       setContext((prev) => prev + '\n\n' +userInput.toString()+ '\n');
     }
 
+    console.log('context:', context); 
+
     // Refresh the chat list 
     const userData = messages.slice(0);
     userData.push({
@@ -379,8 +381,8 @@ const ApplicationContent: NextPage = () => {
               setContext((prev) => prev + chunkValue);
               !respondWithChart ?  userData[userData.length-1].text = userData[userData.length-1].text + chunkValue : ""
               finalMessage+=chunkValue;
-              console.log("Final response text from LLM", finalMessage);
-
+              // console.log("Final response text from LLM", finalMessage);
+              console.log('context:', context);
               if (done) {
                   break;
               }
@@ -398,13 +400,15 @@ const ApplicationContent: NextPage = () => {
 
           setContext((prev) => prev + finalMessage);
           userData[userData.length - 1].text += finalMessage;
-          console.log("Final response text from LLM google search", finalMessage);
+          // console.log("Final response text from LLM google search", finalMessage);
+          console.log('context:', context);
+
         }
         else {
                 finalMessage = finalResponse.toString();
                 setContext((prev) => prev + finalMessage);
             }
-    
+        console.log('context:', context);
         setLoading(false);
         // console.log("Final response text from LLM", finalMessage);
 
