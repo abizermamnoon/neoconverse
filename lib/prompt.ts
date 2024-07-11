@@ -162,27 +162,28 @@ function GOOGLE_SEARCH_PROMPT(userQuery: string) {
     return prompt;
 }
 
-function CONVERT_TO_CURL_PROMPT(userQuery: string) {
+function CONVERT_TO_CURL_PROMPT(userQuery) {
     const prompt = `
-    You are a helpful assistant tasked with converting LinkedIn URLs into a specific curl command format for API requests. Your job is to generate a curl command that includes the provided LinkedIn URL and the necessary authorization header.
+    You are a helpful assistant tasked with converting LinkedIn URLs into a specific format for API requests. Your job is to generate a command that includes the provided LinkedIn URL and the necessary authorization header.
 
     Instructions:
     1. Understand the User Query: Carefully read the user’s LinkedIn URL to ensure it is correctly formatted.
-    2. Construct the Curl Command: Transform the LinkedIn URL into a curl command using the following format:
+    2. Construct the Command: Transform the LinkedIn URL into a command using the following format:
        \`\`\`
-       curl --location "https://api.crystalknows.com/v1/profiles?linkedin_url=<encoded_linkedin_url>" --header "Authorization: Bearer a50001c7f4ba33c79ea88720a8f38603"
+       api.crystalknows.com/v1/profiles?linkedin_url=https://www.linkedin.com/in/{PROFILE_IDENTIFIER}
        \`\`\`
-    3. URL Encode: Ensure that the LinkedIn URL is properly URL encoded before inserting it into the curl command.
+    3. URL Encode: Ensure that the LinkedIn URL is properly URL encoded before inserting it into the command.
 
     Example Transformation:
-    User Query: https://www.linkedin.com/in/abizer-mamnoon/
-    Curl Command: curl --location "https://api.crystalknows.com/v1/profiles?linkedin_url=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fabizer-mamnoon%2F" --header "Authorization: Bearer a50001c7f4ba33c79ea88720a8f38603"
+    User Query: https://www.linkedin.com/in/abizer-mamnoon
+    Command: "api.crystalknows.com/v1/profiles?linkedin_url=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fabizer-mamnoon%2F"
 
-    Given the pattern illustrated in the example above, generate a curl command for the following user query:
+    Given the pattern illustrated in the example above, generate a command for the following user query:
     <UserQuery>${userQuery}</UserQuery>
-    Your Objective: Convert the user query into a curl command format, ensuring that the LinkedIn URL is URL encoded and properly included in the command.`;
+    Your Objective: Convert the user query into the specified format, ensuring that the LinkedIn URL is URL encoded and properly included in the command.`;
     return prompt;
 }
+
 
 export {
     GRACEFUL_MESSAGE_PROMPT, GRACEFUL_HUGE_TEXT_PROMPT, GRACEFUL_CHART_FAILURE_PROMPT,

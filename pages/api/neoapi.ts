@@ -79,12 +79,12 @@ const run = async (agentName: string, cypher: string, options: Map<string, any> 
     console.log('response received')
   } else if (options.get('crystalKnows')) {
     console.log('Retrieving Crystal Knows Profile')
-    console.log('cypher:', cypher)
+    // console.log('cypher:', cypher)
     // Extract the content within single quotes
-    const match = cypher.match(/'([^']+)'/);
-    const searchQuery = match ? match[1] : cypher; // Default to cypher if no match
+    // const match = cypher.match(/'([^']+)'/);
+    // const searchQuery = match ? match[1] : cypher; // Default to cypher if no match
     // console.log('searchQuery:', searchQuery)
-    return runCrystalSearch(searchQuery);
+    return runCrystalSearch(cypher);
     console.log('response received')
   }  else {
     console.log('Not Performing google search')
@@ -152,32 +152,51 @@ export const runSearch = async (searchQuery: string) => {
   return responseData;
 }
 
-export const runCrystalSearch = async (searchQuery) => {
+export const runCrystalSearch = async (searchQuery: string) => {
   try {
-    // Extract URL and Authorization token from searchQuery
-    const urlMatch = searchQuery.match(/curl --location "([^"]+)"/);
-    if (!urlMatch) {
-      throw new Error("Error: URL not found in search query.");
+    console.log('searchQuery:', searchQuery);
+    const apiUrlMatch = searchQuery.match(/api\.crystalknows\.com\/v1\/profiles\?linkedin_url=([^"]+)/);
+    // console.log('API URL:', apiUrlMatch);
+    if (!apiUrlMatch) {
+      throw new Error("Error: API URL not found in search query.");
     }
-    const url = urlMatch[1];
-    console.log('url match:', url)
-
-    const tokenMatch = searchQuery.match(/Authorization: Bearer ([^"]+)/);
-    if (!tokenMatch) {
-      throw new Error("Error: Authorization token not found in search query.");
+    let apiUrl = `https://api.crystalknows.com/v1/profiles?linkedin_url=${apiUrlMatch[1]}`;
+    
+    // Add a trailing slash if one is not present
+    if (!apiUrl.endsWith('/')) {
+      apiUrl += '/';
     }
-    const authToken = tokenMatch[1];
-    console.log('authToken:', authToken)
+    
+    // console.log('API URL:', apiUrl);
 
-    // Make HTTP GET request using axios
-    const headers = {
-      Authorization: `Bearer ${authToken}`
+    const authToken = process.env.authToken;
+    console.log('authToken:', authToken);
+
+    // Construct the request options for fetch
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${authToken}`
+      },
+      redirect: 'follow'
     };
 
-    const response = await axios.get(url, { headers });
-    console.log('response:', response.data); // Log the response data
+    // Make HTTP GET request using fetch
+    const response = await fetch(apiUrl, requestOptions);
+    const result = await response.json();
 
-    return { query: searchQuery, response: response.data };
+    // Remove images field from the result if present
+    if (result && result.data && result.data.photo_url) {
+      delete result.data.photo_url;
+    }
+
+    if (result && result.data && result.data.images) {
+      delete result.data.images;
+    }
+
+    // console.log('response:', result); // Log the response data
+
+    return { query: searchQuery, response: result };
   } catch (error) {
     // Handle errors
     console.error('Error:', error.message);
@@ -186,7 +205,7 @@ export const runCrystalSearch = async (searchQuery) => {
     const curlCommand = curlCommandMatch ? curlCommandMatch[0] : '';
 
     // Return error message along with the curl command
-    return { query: searchQuery, curlCommand };
+    return { query: searchQuery, curlCommand, error: error.message };
   }
 };
 
