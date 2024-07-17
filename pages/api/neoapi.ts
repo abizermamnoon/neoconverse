@@ -199,13 +199,12 @@ export const runCrystalSearch = async (searchQuery: string) => {
     return { query: searchQuery, response: result };
   } catch (error) {
     // Handle errors
-    console.error('Error:', error.message);
-    // Extract the curl command from the query
-    const curlCommandMatch = searchQuery.match(/curl --location "[^"]+" --header "Authorization: Bearer [^"]+"/);
-    const curlCommand = curlCommandMatch ? curlCommandMatch[0] : '';
+    // Extract the LinkedIn URL from the search query
+    const linkedInUrlMatch = searchQuery.match(/linkedin_url=([^"]+)/);
+    const linkedInUrl = linkedInUrlMatch ? decodeURIComponent(linkedInUrlMatch[1]) : 'Unknown LinkedIn URL';
 
     // Return error message along with the curl command
-    return { query: searchQuery, curlCommand, error: error.message };
+    return { response: linkedInUrl };
   }
 };
 
