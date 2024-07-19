@@ -115,7 +115,7 @@ const Home: NextPage = () => {
                 style={{ marginRight: '18px', marginTop: '12px' }}
               />
               <Typography style={{ letterSpacing: "0.1em", color: "rgba(42, 96, 140, 1)", whiteSpace: "pre-wrap", textAlign: 'left', fontSize: "30px", fontWeight: 600 }}
-              >Ignacious
+              >Frank
               </Typography>
               {/* Switching to FontAwesome so I can make a favicon */}
               <div style={{ width: 24, height: 24 }}>
