@@ -7,6 +7,7 @@ import Image from "next/image";
 
 import SendIcon from '@mui/icons-material/Send';
 import TextField from '@mui/material/TextField';
+import PersonIcon from '@mui/icons-material/Person';
 
 import InputAdornment from '@mui/material/InputAdornment';
 
@@ -137,7 +138,7 @@ const Chat = (props) => {
                 borderLeft: 1,
                 borderColor: 'grey.300',
                 bgcolor: 'background.paper',
-                overflow: 'auto',
+                
                 borderTop: '2px dotted lightgray',
                 borderBottom: '2px dotted lightgray',
                 // marginTop: '19px',
@@ -292,33 +293,33 @@ const Chat = (props) => {
                     endAdornment: (
                         <InputAdornment position="end">
                             <Tooltip title={"Sample Questions and Model"}>
-                                <MoreVertIcon style={{ cursor: "pointer" }} onClick={handleMenu} />
+                                <MoreVertIcon style={{ cursor: "pointer", marginRight: "10px" }} onClick={handleMenu} />
                             </Tooltip>
                             {respondWithChart ?
                                 <Tooltip title="Respond with Chart">
-                                    <DonutSmallIcon sx={{ cursor: "pointer" }} onClick={() => { setRespondWithChart(!respondWithChart) }} />
+                                    <DonutSmallIcon sx={{ cursor: "pointer", marginRight: "10px" }} onClick={() => { setRespondWithChart(!respondWithChart) }} />
                                 </Tooltip>
                                 :
                                 <Tooltip title="Respond with Text">
-                                    <ArticleIcon sx={{ cursor: "pointer" }} onClick={() => { setRespondWithChart(!respondWithChart) }} />
+                                    <ArticleIcon sx={{ cursor: "pointer", marginRight: "10px" }} onClick={() => { setRespondWithChart(!respondWithChart) }} />
                                 </Tooltip>
                             }
                             {googleSearch  ?
                                     <Tooltip title="Database Search">
-                                        <StorageIcon sx={{ cursor: "pointer" }} onClick={() => { setGoogleSearch(!googleSearch) }} />
+                                        <StorageIcon sx={{ cursor: "pointer", marginRight: "10px" }} onClick={() => { setGoogleSearch(!googleSearch) }} />
                                     </Tooltip>
                                     :
                                     <Tooltip title="Google Search">
-                                        <GoogleIcon sx={{ cursor: "pointer" }} onClick={() => { setGoogleSearch(!googleSearch) }} />
+                                        <GoogleIcon sx={{ cursor: "pointer", marginRight: "10px" }} onClick={() => { setGoogleSearch(!googleSearch) }} />
                                     </Tooltip>
                             }
                             {crystalKnows ?
                                 <Tooltip title="Database Search">
-                                    <StorageIcon sx={{ cursor: "pointer" }} onClick={() => { setCrystalKnows(!crystalKnows) }} />
+                                    <StorageIcon sx={{ cursor: "pointer", marginRight: "10px" }} onClick={() => { setCrystalKnows(!crystalKnows) }} />
                                 </Tooltip>
                                 :
                                 <Tooltip title="Crystal Knows">
-                                    <InfoTwoToneIcon sx={{ cursor: "pointer" }} onClick={() => { setCrystalKnows(!crystalKnows) }} />
+                                    <PersonIcon sx={{ cursor: "pointer", marginRight: "10px" }} onClick={() => { setCrystalKnows(!crystalKnows) }} />
                                 </Tooltip>
 
                             }

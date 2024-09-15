@@ -33,12 +33,13 @@ const LogoutLink = () => {
 
   return (
     authMethod === 'Auth0' ? (
-      <Link href="/api/auth/logout" style={{
-        marginLeft: '10px', marginTop: '8px', marginRight: '5px',
-        color: '#545454',
-        textDecoration: 'none'
-      }}>Logout
-      </Link>
+      <img
+                height="40"
+                width="auto"
+                src="/talent_engines_logo.jpg"
+                alt="Logo"
+                style={{ marginRight: '18px', marginTop: '12px' }}
+              />
     ) : (
       <></>
     )
@@ -107,14 +108,8 @@ const Home: NextPage = () => {
           >
             <Stack direction="row" justifyContent={"center"} spacing={0} style={{ paddingLeft: 10 }}
             >
-              <img
-                height="24"
-                width="auto"
-                src="/talent_engines_logo.jpg"
-                alt="Logo"
-                style={{ marginRight: '18px', marginTop: '12px' }}
-              />
-              <Typography style={{ letterSpacing: "0.1em", color: "rgba(42, 96, 140, 1)", whiteSpace: "pre-wrap", textAlign: 'left', fontSize: "30px", fontWeight: 600 }}
+              
+              <Typography style={{ letterSpacing: "0.1em", color: "rgba(42, 96, 140, 1)", whiteSpace: "pre-wrap", textAlign: 'left', fontSize: "40px", fontWeight: 600 }}
               >Frank
               </Typography>
               {/* Switching to FontAwesome so I can make a favicon */}
@@ -142,7 +137,7 @@ const Home: NextPage = () => {
             sx={{
               width: '100%',
               height: '100%,',
-              backgroundImage: 'url(/shape2_bottom.png)',
+
               backgroundSize: 'contain',
               backgroundPosition: 'top', // Center the background image
               backgroundRepeat: 'repeat', // Prevent the image from repeating
@@ -150,7 +145,6 @@ const Home: NextPage = () => {
           >
             <Item>
               <Stack direction="row" spacing={0} style={{ paddingLeft: 10, justifyContent: "flex-end" }}
-
               >
                 {showOptions && <FormControl size="small"
                   style={{ color: "rgba(0, 0, 0, 0.6)", fontWeight: 400, fontSize: 15, fontFamily: "sans-serif", paddingLeft: 10 }}

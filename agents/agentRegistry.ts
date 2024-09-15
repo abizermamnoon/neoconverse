@@ -124,7 +124,7 @@ const initialAgentData = {
         protocol: 'neo4j+s',
         username: 'neo4j'
     },
-    icon: '/bi.png',
+    icon: '/frank.png',
     userDefined: false,
     schemaDiagram: "",
     promptParts: {
