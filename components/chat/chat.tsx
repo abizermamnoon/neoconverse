@@ -78,6 +78,10 @@ const Chat = (props) => {
     const [schemaModalVisible, setSchemaModalVisible] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
     const [initialized, setInitialized] = useState(false);
+    const user = {
+        name: 'abizer',
+        email: 'abizer@example.com' // Adjust the email as needed
+    };
 
     useEffect(() => {
         if (!initialized) {
@@ -141,6 +145,7 @@ const Chat = (props) => {
                 
                 borderTop: '2px dotted lightgray',
                 borderBottom: '2px dotted lightgray',
+                overflowY: 'auto',
                 // marginTop: '19px',
             }}>
                 {messages.map((m, i) => (
