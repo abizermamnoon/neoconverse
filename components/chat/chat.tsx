@@ -38,6 +38,7 @@ import LoadingDots from "../common/LoadingDots";
 import CypherEditor from "./cypherEditor"
 import SchemaModal from '../common/SchemaModal';
 import QuestionsModal from '../common/QuestionsModal';
+import { Select, FormControl, InputLabel } from '@mui/material';
 
 const ExtraPadding = 10;
 
@@ -280,63 +281,71 @@ const Chat = (props) => {
                     </div>
                 ))}
             </List>
-            <TextField ref={howCanIHelpRef} fullWidth id="standard-basic" label="How can i help you today ?" variant="standard"
-                sx={{ fontWeight: 400, fontSize: 15 }}
-                multiline
-                onKeyDown={(e) => {
-                    if (e.key === "Enter" && !e.shiftKey) {
-                        StreamResponse(e)
-                    }
-                }}
-                onChange={(e) => {
-                    if (e.key !== "Enter" || e.shiftKey) {
-                        setUserInput(e.target.value)
-                    } 
-                }}
-                value={userInput}
-                InputProps={{
-                    endAdornment: (
-                        <InputAdornment position="end">
-                            <Tooltip title={"Sample Questions and Model"}>
-                                <MoreVertIcon style={{ cursor: "pointer", marginRight: "10px" }} onClick={handleMenu} />
-                            </Tooltip>
-                            {respondWithChart ?
-                                <Tooltip title="Respond with Chart">
-                                    <DonutSmallIcon sx={{ cursor: "pointer", marginRight: "10px" }} onClick={() => { setRespondWithChart(!respondWithChart) }} />
-                                </Tooltip>
-                                :
-                                <Tooltip title="Respond with Text">
-                                    <ArticleIcon sx={{ cursor: "pointer", marginRight: "10px" }} onClick={() => { setRespondWithChart(!respondWithChart) }} />
-                                </Tooltip>
-                            }
-                            {googleSearch  ?
-                                    <Tooltip title="Database Search">
-                                        <StorageIcon sx={{ cursor: "pointer", marginRight: "10px" }} onClick={() => { setGoogleSearch(!googleSearch) }} />
-                                    </Tooltip>
-                                    :
-                                    <Tooltip title="Google Search">
-                                        <GoogleIcon sx={{ cursor: "pointer", marginRight: "10px" }} onClick={() => { setGoogleSearch(!googleSearch) }} />
-                                    </Tooltip>
-                            }
-                            {crystalKnows ?
-                                <Tooltip title="Database Search">
-                                    <StorageIcon sx={{ cursor: "pointer", marginRight: "10px" }} onClick={() => { setCrystalKnows(!crystalKnows) }} />
-                                </Tooltip>
-                                :
-                                <Tooltip title="Crystal Knows">
-                                    <PersonIcon sx={{ cursor: "pointer", marginRight: "10px" }} onClick={() => { setCrystalKnows(!crystalKnows) }} />
-                                </Tooltip>
+            <TextField ref={howCanIHelpRef} fullWidth id="standard-basic" label="How can I help you today?" variant="standard"
+    sx={{ fontWeight: 400, fontSize: 15 }}
+    multiline
+    onKeyDown={(e) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+            StreamResponse(e)
+        }
+    }}
+    onChange={(e) => {
+        if (e.key !== "Enter" || e.shiftKey) {
+            setUserInput(e.target.value)
+        }
+    }}
+    value={userInput}
+    InputProps={{
+        endAdornment: (
+            <InputAdornment position="end">
+    <FormControl variant="standard" sx={{ minWidth: 120 }}>
+        {/* <InputLabel id="options-label">Options</InputLabel> */}
+        <Select
+            labelId="options-label"
+            id="options-select"
+            value={
+                respondWithChart
+                    ? 'chart'
+                    : googleSearch
+                    ? 'google'
+                    : crystalKnows
+                    ? 'crystal'
+                    : 'database'
+            }
+            onChange={(e) => {
+                const value = e.target.value;
+                setRespondWithChart(value === 'chart');
+                setGoogleSearch(value === 'google');
+                setCrystalKnows(value === 'crystal');
+                
+                // If "database" is selected, set all to false
+                if (value === 'database') {
+                    setRespondWithChart(false);
+                    setGoogleSearch(false);
+                    setCrystalKnows(false);
+                }
+            }}
+        >
+            <MenuItem value="chart">Respond with Chart</MenuItem>
+            <MenuItem value="google">Google Search</MenuItem>
+            <MenuItem value="crystal">Crystal Knows</MenuItem>
+            <MenuItem value="database">Database Search</MenuItem>
+        </Select>
+    </FormControl>
+    <Tooltip title="Send Message">
+        <SendIcon
+            sx={{ cursor: 'pointer', paddingLeft: '10px', paddingRight: '10px' }}
+            onClick={(e) => {
+                StreamResponse(e);
+            }}
+        />
+    </Tooltip>
+</InputAdornment>
 
-                            }
-                            <Tooltip title="Send Message">
-                                <SendIcon sx={{ cursor: "pointer", paddingLeft: "10px", paddingRight: "10px" }} onClick={(e) => {
-                                    StreamResponse(e)
-                                }} />
-                            </Tooltip>
-                        </InputAdornment>
-                    ),
-                }}
-            />
+        ),
+    }}
+/>
+
             <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}
