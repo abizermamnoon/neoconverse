@@ -242,6 +242,27 @@ const ApplicationContent: NextPage = () => {
     // Enable progress loading bar while response is being generated
     setLoading(true);
 
+    const fetchMessages = async () => {
+      try {
+        console.log('about to fetch messages');
+          const response = await fetch('/api/data');
+          console.log('Fetch response status:', response.status); // Log response status
+          
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+  
+          const data = await response.json();
+          console.log('Fetched messages:', data); // Log fetched messages
+          setMessages(data); // Update messages with fetched data
+      } catch (error) {
+          console.error('Error fetching messages:', error);
+      }
+  };
+
+  await fetchMessages(); // Call the fetch function
+
+
     if(context === "")
     {
       setContext((prev) => prev + '\n' +userInput.toString()+ '\n');
@@ -255,8 +276,7 @@ const ApplicationContent: NextPage = () => {
 
     // Refresh the chat list 
     const userData = messages.slice(0);
-    const conversationId = Date.now() + "-" + user.name;
-
+    const conversationId = Date.now();
     const userMessage = {
       conversation_id: conversationId,
       text: userInput,
