@@ -10,6 +10,7 @@ import TextField from '@mui/material/TextField';
 import PersonIcon from '@mui/icons-material/Person';
 
 import InputAdornment from '@mui/material/InputAdornment';
+import Box from '@mui/material/Box';
 
 import ArticleIcon from '@mui/icons-material/Article';
 import CodeSharpIcon from '@mui/icons-material/CodeSharp';
@@ -395,3 +396,4 @@ const Chat = (props) => {
 }
 
 export default Chat;
+ 

@@ -153,32 +153,115 @@ const ApplicationContent: NextPage = () => {
   }
 
   const processDomainChange = async (key: string) => {
-      let agent:any = agents.find(agent => agent?.key === key);
-      if (agent) {
-        setContext("");
-        setUserInput("");
-        setInitialContext(agent.schema);    
-        setFewShot(agent.fewshot);
-        setCurrentDomainImage(agent.icon);
-        setDbSchemaImageUrl(agent.dataModelPath);
-        setOpenAIModel(process.env.OPENAI_MODEL as string);
-        let keys = await getLLMKey(agent)
-        setLLMKey(keys);
-        setIsUserDefinedAgent(agent.userDefined)
-        if(!agent.userDefined)
-          setSampleQuestions(extractQuestions(agent.promptParts.fewshot));
-          else{
-            setSampleQuestions({})
-          }
-        // Adding console logs to check values
-        console.log("Agent found:", agent);
-        console.log("Initial context:", agent.promptParts.dataModel);
-        console.log("Fewshot examples:", agent.promptParts.fewshot);
-        console.log("Sample questions:", sampleQuestions);
+    let agent: any = agents.find(agent => agent?.key === key);
+  
+    if (agent) {
+      // Fetch messages and log them
+      const fetchedMessages = await fetchMessages();
+      console.log("Fetched messages:", fetchedMessages);
+  
+      // Proceed with the existing logic
+      setContext("");
+      setUserInput("");
+      setInitialContext(agent.schema);    
+      setFewShot(agent.fewshot);
+      setCurrentDomainImage(agent.icon);
+      setDbSchemaImageUrl(agent.dataModelPath);
+      setOpenAIModel(process.env.OPENAI_MODEL as string);
+  
+      let keys = await getLLMKey(agent);
+      setLLMKey(keys);
+      setIsUserDefinedAgent(agent.userDefined);
+  
+      if (!agent.userDefined) {
+        setSampleQuestions(extractQuestions(agent.promptParts.fewshot));
       } else {
-        throw new Error(`Unable to find agent with key '${key}'`);
+        setSampleQuestions({});
       }
-  }
+  
+      // Adding console logs to check values
+      console.log("Agent found:", agent);
+      console.log("Initial context:", agent.promptParts.dataModel);
+      console.log("Fewshot examples:", agent.promptParts.fewshot);
+      console.log("Sample questions:", sampleQuestions);
+    } else {
+      throw new Error(`Unable to find agent with key '${key}'`);
+    }
+  };
+  
+  const fetchMessages = async () => {
+    try {
+        console.log('about to fetch messages');
+        const response = await fetch('/api/data');
+        console.log('Fetch response status:', response.status); // Log response status
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        console.log('Fetched messages:', data); // Log fetched messages
+
+        // Ensure that `data.messages` is an array
+        const messagesArray = Array.isArray(data.messages) ? data.messages : [];
+
+        // Create an array to hold user and AI messages
+        const userData = [];
+
+        // Map the incoming messages to the new structure
+        messagesArray.forEach(message => {
+            const userMessage = {
+                conversation_id: message.conversation_id,
+                text: message.user_input, // Use user_input as text
+                date: new Date(message.timestamp), // Convert timestamp to Date
+                agent: message.author.name, // Use author's name as agent
+                author: {
+                    name: "User",
+                     // Default avatar for user
+                },
+                avatar: "/userProfile.jpeg",
+                isChart: false,
+                isSearch: false,
+                isCrystalKnows: false,
+                cypher: "", // Set cypher to empty for user message
+                chartData: {}
+            };
+
+            const aiMessage = {
+                conversation_id: message.conversation_id,
+                text: message.final_response, // Use final_response as text
+                date: new Date(message.timestamp), // Convert timestamp to Date
+                agent: "ai", // Set agent to "ai"
+                avatar: "/frank.png",
+                author: {
+                    name: "ai",
+                     // Use currentDomainImage for AI
+                },
+                isChart: respondWithChart,
+                isSearch: googleSearch,
+                isCrystalKnows: crystalKnows,
+                cypher: message.cypher_query || "", // Use cypher_query if available
+                chartData: {}
+            };
+
+            // Push user and AI messages to userData
+            userData.push(userMessage);
+            userData.push(aiMessage);
+        });
+
+        // Update messages only if userData is not empty
+        if (userData.length > 0) {
+          setMessages(userData);
+      }
+        return userData; // Return the array to use it in processDomainChange
+    } catch (error) {
+        console.error('Error fetching messages:', error);
+        return null; // Return null if there's an error
+    }
+};
+
+  
+  
 
   useEffect(() => {
     const initialize = async () => {
@@ -241,26 +324,6 @@ const ApplicationContent: NextPage = () => {
 
     // Enable progress loading bar while response is being generated
     setLoading(true);
-
-    const fetchMessages = async () => {
-      try {
-        console.log('about to fetch messages');
-          const response = await fetch('/api/data');
-          console.log('Fetch response status:', response.status); // Log response status
-          
-          if (!response.ok) {
-              throw new Error('Network response was not ok');
-          }
-  
-          const data = await response.json();
-          console.log('Fetched messages:', data); // Log fetched messages
-          setMessages(data); // Update messages with fetched data
-      } catch (error) {
-          console.error('Error fetching messages:', error);
-      }
-  };
-
-  await fetchMessages(); // Call the fetch function
 
 
     if(context === "")

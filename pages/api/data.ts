@@ -1,10 +1,15 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
+interface Author {
+  name: string;
+}
+
 interface Message {
   conversation_id: number;
   user_input: string;
   cypher_query: string;
   final_response: string;
+  author: Author;
   timestamp: number;
 }
 
@@ -17,6 +22,7 @@ const saveToMemory = (conversation_id: number, userInput: string, cypherQuery: s
     user_input: userInput,
     cypher_query: cypherQuery,
     final_response: finalResponse,
+    author: { name: "ai" }, // Adding the author field
     timestamp: Date.now(),
   };
 
@@ -51,4 +57,3 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.status(405).json({ error: 'Method Not Allowed' });
   }
 }
-
