@@ -507,13 +507,15 @@ const ApplicationContent: NextPage = () => {
         else if (googleSearch || crystalKnows) {
           // Extracting the actual response text from the finalResponse string
 
-          let finalMessage;
+          
 
           if (finalResponse.startsWith('RETURN ')) {
             // Remove 'RETURN ' and ' as response' from the beginning and end of finalResponse
             finalMessage = finalResponse.replace(/^RETURN '|'\s+as response$/g, '');
+            console.log('final message from google or crystal knows:', finalMessage);
           } else {
             finalMessage = finalResponse.toString();
+            console.log('final message from google or crystal knows:', finalMessage);
           }
 
           setContext((prev) => prev + finalMessage);
