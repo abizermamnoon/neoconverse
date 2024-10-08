@@ -186,9 +186,31 @@ function CONVERT_TO_CURL_PROMPT(userQuery) {
     return prompt;
 }
 
+function CONVERT_TO_SEARCH_CONTACTS_PROMPT(userQuery) {
+    const prompt = `
+    You are a helpful assistant tasked with converting LinkedIn URLs into a specific format for API requests.
+
+    Instructions:
+    1. Understand the User Query: Carefully read the user’s LinkedIn URL to ensure it is correctly formatted.
+    2. Construct the Command: Transform the LinkedIn URL into a command using the following format:
+       \`\`\`
+       https://www.linkedin.com/in/{PROFILE_IDENTIFIER}/
+       \`\`\`
+    
+
+    Example Transformation:
+    User Query: https://www.linkedin.com/in/abizer-mamnoon/
+    Command: "https://www.linkedin.com/in/abizer-mamnoon/"
+
+    Given the pattern illustrated in the example above, generate a command for the following user query:
+    <UserQuery>${userQuery}</UserQuery>
+    Your Objective: Convert the user query into the specified format, ensuring that the LinkedIn URL is URL encoded and properly included in the command.`;
+    return prompt;
+}
+
 
 export {
     GRACEFUL_MESSAGE_PROMPT, GRACEFUL_HUGE_TEXT_PROMPT, GRACEFUL_CHART_FAILURE_PROMPT,
     HUMAN_READABLE_MESSAGE_PROMPT, CHART_GENERATION_PROMPT, CYPHER_GENERATION_PROMPT,
-    GOOGLE_SEARCH_PROMPT, CONVERT_TO_CURL_PROMPT
+    GOOGLE_SEARCH_PROMPT, CONVERT_TO_CURL_PROMPT, CONVERT_TO_SEARCH_CONTACTS_PROMPT
 }

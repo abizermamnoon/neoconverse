@@ -1,4 +1,3 @@
-
 //import { withApiAuthRequired, getAccessToken } from '@auth0/nextjs-auth0';
 import CryptoJS from "crypto-js";
 import { NeoDatabaseConstants } from "../../components/database/constants";
@@ -86,7 +85,16 @@ const run = async (agentName: string, cypher: string, options: Map<string, any> 
     // console.log('searchQuery:', searchQuery)
     return runCrystalSearch(cypher);
     console.log('response received')
-  }  else {
+  }  else if (options.get('searchContacts')) {
+    console.log('Retrieving Crystal Knows Profile')
+    // console.log('cypher:', cypher)
+    // Extract the content within single quotes
+    // const match = cypher.match(/'([^']+)'/);
+    // const searchQuery = match ? match[1] : cypher; // Default to cypher if no match
+    // console.log('searchQuery:', searchQuery)
+    return runSearchContacts(cypher);
+    console.log('response received')
+  } else {
     console.log('Not Performing google search')
     let neoAgent = NeoAgents.get(agentName) || NeoDatabaseBackendConfig;
 
@@ -208,12 +216,80 @@ export const runCrystalSearch = async (searchQuery: string) => {
   }
 };
 
+const url = "https://api.apollo.io/v1/people/match";
+
+const headers = {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/json',
+    'X-Api-Key': process.env.apollo_api_key
+};
+
+export const runSearchContacts = async (searchQuery: string) => {
+  const defaultLinkedInURL = "https://www.linkedin.com/in/abizer-mamnoon/";
+  
+  // Function to extract LinkedIn URL from the input query
+  const extractLinkedInURL = (query: string) => {
+      const urlMatch = query.match(/https:\/\/www\.linkedin\.com\/in\/[^\s"']+/);
+      return urlMatch ? urlMatch[0] : "";
+  };
+  
+
+  // Extract LinkedIn URL or use default
+
+  const linkedinURL = extractLinkedInURL(searchQuery);
+  console.log('linkedinURL:', linkedinURL);
+
+  const data = {
+      id: "",
+      first_name: "",
+      last_name: "",
+      organization_name: "",
+      email: "",
+      hashed_email: "",
+      domain: "",
+      linkedin_url: linkedinURL, // Set the extracted LinkedIn URL or default
+      reveal_personal_emails: true,
+      reveal_phone_number: true,
+      webhook_url: "https://your_webhook_site"
+  };
+
+  try {
+      console.log('LinkedIn URL:', linkedinURL);
+
+      // Make the API request using fetch
+      const response = await fetch(url, {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify(data) // Send data in the body
+      });
+
+      if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+
+      // Remove the image field if present
+      if (result.data && result.data.photo_url) {
+          delete result.data.photo_url;
+      }
+
+      // Output the email address from the response
+      const email = result.person?.contact?.email || 'Email not found'; // Adjust according to the actual response structure
+      console.log('email:', email);
+      return { query: searchQuery, response: email }; // Return both query and response
+  } catch (error) {
+      console.error("Error:", error);
+      return { response: `Error fetching data for LinkedIn URL: ${linkedinURL}` };
+  }
+};
+
 
 const handler = async (req: Request): Promise<Response> => {
   //res.status(200).json({ name: 'John Doe' })
   console.log("Handler invoked");
   let json = await req.json();
-  console.log('json: ', json);
+  // console.log('json: ', json);
   const { agentName, cypherQuery, options } = json;
   const optionsMap = new Map(Object.entries(options));
   try {
@@ -221,7 +297,7 @@ const handler = async (req: Request): Promise<Response> => {
     console.log("cypher query:", cypherQuery)
     //console.log("before run");
     const result = await run(agentName, cypherQuery, optionsMap);
-    console.log("Query result:", result);
+    // console.log("Query result:", result);
     //console.log("result: ", result);
     const jsonResponse = JSON.stringify({ result });
     console.log("Response JSON:", jsonResponse);

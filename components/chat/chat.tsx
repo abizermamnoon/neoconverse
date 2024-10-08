@@ -52,6 +52,7 @@ const Chat = (props) => {
         respondWithChart,
         googleSearch,
         crystalKnows,
+        searchContacts,
         runCypher,
         sampleQuestions,
         scrollToBios,
@@ -61,6 +62,7 @@ const Chat = (props) => {
         setRespondWithChart,
         setGoogleSearch,
         setCrystalKnows,
+        setSearchContacts,
         setUserInput,
         setBioRef,
         styleProps,
@@ -309,6 +311,8 @@ const Chat = (props) => {
                     ? 'chart'
                     : googleSearch
                     ? 'google'
+                    : searchContacts
+                    ? 'contacts'
                     : crystalKnows
                     ? 'crystal'
                     : 'database'
@@ -318,12 +322,14 @@ const Chat = (props) => {
                 setRespondWithChart(value === 'chart');
                 setGoogleSearch(value === 'google');
                 setCrystalKnows(value === 'crystal');
+                setSearchContacts(value === 'contacts');
                 
                 // If "database" is selected, set all to false
                 if (value === 'database') {
                     setRespondWithChart(false);
                     setGoogleSearch(false);
                     setCrystalKnows(false);
+                    setSearchContacts(false);
                 }
             }}
         >
@@ -331,6 +337,7 @@ const Chat = (props) => {
             <MenuItem value="google">Google Search</MenuItem>
             <MenuItem value="crystal">Crystal Knows</MenuItem>
             <MenuItem value="database">Database Search</MenuItem>
+            <MenuItem value="contacts">Contact Search</MenuItem>
         </Select>
     </FormControl>
     <Tooltip title="Send Message">
