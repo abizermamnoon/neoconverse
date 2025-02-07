@@ -155,7 +155,7 @@ function GOOGLE_SEARCH_PROMPT(userQuery: string) {
 
     Example Transformation:
     User Query: What are the latest advancements in AI technology?
-    Search-Friendly Query: "latest advancements in AI technology"
+    Search-Friendly Query: "What are the latest advancements in AI technology?"
 
     Given the pattern illustrated in the example above, generate a search-friendly query for the following user query:
     <UserQuery>${userQuery}</UserQuery>
