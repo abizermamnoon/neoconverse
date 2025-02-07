@@ -130,6 +130,7 @@ Objective: Your primary objective is to convert user inquiries into direct Cyphe
 
 Ensure that the return statement of the Cypher query will never have an attribute attached to the node. For example, always return the node itself, not an attribute of the node.
 
+Ensure that this line is also included in the cypher query always: MATCH (a)-[:IS]-(status:Status) WHERE status.OriginalName IN ['Newly added to the database', 'Recently changed', 'Not Changed', 'Lateral move', 'Lateral Move*', 'Newly Hired Graduates', 'Moved due to merger', 'SECONDMENT']
 <Schema>
     ${schema}
 </Schema>

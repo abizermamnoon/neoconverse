@@ -261,9 +261,6 @@ const ApplicationContent: NextPage = () => {
     }
 };
 
-  
-  
-
   useEffect(() => {
     const initialize = async () => {
       setAgentsAreLoading(true);
