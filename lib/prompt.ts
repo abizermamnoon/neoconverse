@@ -130,6 +130,10 @@ Objective: Your primary objective is to convert user inquiries into direct Cyphe
 
 Ensure that the return statement of the Cypher query will never have an attribute attached to the node. For example, always return the node itself, not an attribute of the node.
 
+At the end of each cypher query, include a LIMIT clause that restricts the results to the number of results the user queries for
+
+If the user inputs a school name, always convert it to lower case before using it in the cypher query.
+
 <Schema>
     ${schema}
 </Schema>

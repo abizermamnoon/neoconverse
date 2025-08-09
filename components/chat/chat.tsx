@@ -171,7 +171,7 @@ const Chat = (props) => {
                                                     variant="caption"
                                                     color="text.primary"
                                                 >
-                                                    Hey there! Frank the bot uses generative AI to help you communicate with Talent Engines neo4j database using natural language
+                                                    Frank - He retrieves the information you need
                                                 </Typography>
                                                 {" "}
                                             </React.Fragment>

@@ -93,7 +93,7 @@ const ApplicationContent: NextPage = () => {
         name: "ai"
       },
       agent:"System",
-      avatar: '/neologo.png',
+      avatar: '/frank.png',
       isChart: false,
       isSearch: false,
       isCrystalKnows: false,
