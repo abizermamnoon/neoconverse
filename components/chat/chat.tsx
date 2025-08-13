@@ -157,7 +157,7 @@ const Chat = (props) => {
                     <div className="chat-message" key={i}>
                         <ListItem divider sx={{ width: "100%" }}>
                             <ListItemAvatar>
-                                <Image width={30} height={30} alt="Neo4j" src={m.avatar} />
+                                <Image width={40} height={40} alt="Neo4j" src={m.avatar} />
                             </ListItemAvatar>
 
                             {i === 0 && (
@@ -171,7 +171,7 @@ const Chat = (props) => {
                                                     variant="caption"
                                                     color="text.primary"
                                                 >
-                                                    Frank - He retrieves the information you need
+                                                    Frank - He retrieves the information you need!
                                                 </Typography>
                                                 {" "}
                                             </React.Fragment>
