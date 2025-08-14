@@ -126,7 +126,7 @@ const Home: NextPage = () => {
                 <Typography variant="caption" display="block" gutterBottom
                   style={{ textAlign: 'left', color: "rgba(42, 96, 140, 1)" }}
                 >
-                  Delivering On Our Promise: Better, Faster, Less Expensively
+                Delivering insights  - fast!
                 </Typography>
               </div>
             </Stack>
