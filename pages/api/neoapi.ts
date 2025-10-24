@@ -199,19 +199,39 @@ export const runSearch = async (searchQuery: string) => {
 export const runCrystalSearch = async (searchQuery: string) => {
   try {
     console.log('searchQuery:', searchQuery);
-    const apiUrlMatch = searchQuery.match(/api\.crystalknows\.com\/v1\/profiles\?linkedin_url=([^"]+)/);
-    // console.log('API URL:', apiUrlMatch);
-    if (!apiUrlMatch) {
-      throw new Error("Error: API URL not found in search query.");
-    }
-    let apiUrl = `https://api.crystalknows.com/v1/profiles?linkedin_url=${apiUrlMatch[1]}`;
-    
+    // const apiUrlMatch = searchQuery.match(/api\.crystalknows\.com\/v1\/profiles\?linkedin_url=([^"]+)/);
+    // // console.log('API URL:', apiUrlMatch);
+    //const apiUrlMatch = searchQuery.match(/api\.crystalknows\.com\/v1\/profiles\?linkedin_url=[^"]+/);
+
+    // if (!apiUrlMatch) {
+    //   throw new Error("Error: API URL not found in search query.");
+    // }
+    // let apiUrl = `https://api.crystalknows.com/v1/profiles?linkedin_url=${apiUrlMatch}`;
+        
     // Add a trailing slash if one is not present
+    // if (!apiUrl.endsWith('/')) {
+    //   apiUrl += '/';
+    // }
+    
+    //console.log('API URL:', apiUrl);
+    // Match the LinkedIn profile URL inside backticks, quotes, or plain text
+    const linkedInMatch = searchQuery.match(/https:\/\/www\.linkedin\.com\/in\/[a-zA-Z0-9_-]+\/?/);
+
+    if (!linkedInMatch) {
+      throw new Error("Error: LinkedIn URL not found in search query.");
+    }
+
+    const linkedInUrl = linkedInMatch[0];
+
+    // Encode the LinkedIn URL for the CrystalKnows API
+    const encodedLinkedInUrl = encodeURIComponent(linkedInUrl);
+
+    // Construct the API URL
+    let apiUrl = `https://api.crystalknows.com/v1/profiles?linkedin_url=${encodedLinkedInUrl}`;
+
     if (!apiUrl.endsWith('/')) {
       apiUrl += '/';
     }
-    
-    // console.log('API URL:', apiUrl);
 
     const authToken = process.env.authToken;
     console.log('authToken:', authToken);
@@ -228,6 +248,8 @@ export const runCrystalSearch = async (searchQuery: string) => {
     // Make HTTP GET request using fetch
     const response = await fetch(apiUrl, requestOptions);
     const result = await response.json();
+
+    console.log('Crystal Knows API response:', result);
 
     // Remove images field from the result if present
     if (result && result.data && result.data.photo_url) {

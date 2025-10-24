@@ -168,7 +168,7 @@ function GOOGLE_SEARCH_PROMPT(userQuery: string) {
     return prompt;
 }
 
-function CONVERT_TO_CURL_PROMPT(userQuery) {
+function CONVERT_TO_CURL_PROMPT1(userQuery) {
     const prompt = `
     You are a helpful assistant tasked with converting LinkedIn URLs into a specific format for API requests. Your job is to generate a command that includes the provided LinkedIn URL and the necessary authorization header.
 
@@ -187,6 +187,19 @@ function CONVERT_TO_CURL_PROMPT(userQuery) {
     Given the pattern illustrated in the example above, generate a command for the following user query:
     <UserQuery>${userQuery}</UserQuery>
     Your Objective: Convert the user query into the specified format, ensuring that the LinkedIn URL is URL encoded and properly included in the command.`;
+    return prompt;
+}
+
+function CONVERT_TO_CURL_PROMPT(userQuery) {
+    const prompt = `
+
+    Example Transformation:
+    User Query: https://www.linkedin.com/in/abizer-mamnoon
+    Response: https://www.linkedin.com/in/abizer-mamnoon
+
+    Given the pattern illustrated in the example above, generate a command for the following user query:
+    <UserQuery>${userQuery}</UserQuery>
+    Your response should include only the LinkedIn URL without any additional text or formatting.`;
     return prompt;
 }
 

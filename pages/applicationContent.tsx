@@ -421,8 +421,10 @@ const ApplicationContent: NextPage = () => {
       const prompt = prompts.GOOGLE_SEARCH_PROMPT(userInput);
       responseText = await GenerateContent(isUserDefined, prompt, false, respondWithChart, llmKey, googleSearch, crystalKnows, searchContacts);
     } else if (crystalKnows) {
+      //var neoResponse:any = await ExecuteCrystalKnows(isUserDefined, false,  selectedAgentKey, userInput, {googleSearch, crystalKnows});
       const prompt = prompts.CONVERT_TO_CURL_PROMPT(userInput);
       responseText = await GenerateContent(isUserDefined, prompt, true, respondWithChart, llmKey, googleSearch, crystalKnows, searchContacts);
+      //responseText = await runCrystalSearch(userInput);
     } else if (searchContacts) {
       const prompt = prompts.CONVERT_TO_SEARCH_CONTACTS_PROMPT(userInput);
       console.log("prompt: ", prompt); // Logging userInput for debugging
@@ -436,7 +438,7 @@ const ApplicationContent: NextPage = () => {
     
     
     // let responseText = await GenerateContent(isUserDefined, prompt, true, respondWithChart, llmKey)
-    // console.log('responseText \n' , responseText);
+    console.log('user input \n' , userInput);
 
     var query = "";
     if (responseText.toString().toLowerCase().indexOf('limit') !== -1 ) {
@@ -454,7 +456,9 @@ const ApplicationContent: NextPage = () => {
         } else if (googleSearch) {
           var neoResponse:any = await ExecuteGoogleSearch(isUserDefined, false,  selectedAgentKey, query, {googleSearch, crystalKnows, searchContacts});
         } else if (crystalKnows){
-          var neoResponse:any = await ExecuteCrystalKnows(isUserDefined, false,  selectedAgentKey, query, {googleSearch, crystalKnows, searchContacts});
+          //var neoResponse:any = await runCrystalSearch(userInput)
+          var neoResponse:any = await ExecuteCrystalKnows(isUserDefined, false,  selectedAgentKey, query, {googleSearch, crystalKnows});
+          //var neoResponse:any = await ExecuteCrystalKnows(isUserDefined, false,  selectedAgentKey, query, {googleSearch, crystalKnows, searchContacts});
         } else if (searchContacts){
           var neoResponse:any = await ExecuteSearchContacts(isUserDefined, false,  selectedAgentKey, query, {googleSearch, crystalKnows, searchContacts});
         }

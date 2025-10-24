@@ -549,7 +549,7 @@ export async function ExecuteCrystalKnows(invokeFromClient:boolean,
       if (!agent) {
           throw new Error(`Can't find agent '${agentName}'`);
       }
-      // console.log('searchQuery:', searchQuery)
+      console.log('searchQuery:', searchQuery)
       let cypherResponse = await runCrystalSearch(searchQuery);
       console.log('response received')
       // adding result key so it looks like it came from the backend
