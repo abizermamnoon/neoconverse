@@ -1,0 +1,778 @@
+
+[2025-10-25T20:22:00.762Z]
+{
+  "userMessage": {
+    "conversation_id": 1761423717075,
+    "text": "how many attorneys are in the database",
+    "date": "2025-10-25T20:21:57.075Z",
+    "agent": "tbot",
+    "author": {
+      "name": "User"
+    },
+    "avatar": "/userProfile.jpeg",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "",
+    "chartData": {}
+  },
+  "aiMessage": {
+    "conversation_id": 1761423717075,
+    "text": "",
+    "date": "2025-10-25T20:21:57.075Z",
+    "agent": "tbot",
+    "author": {
+      "name": "ai"
+    },
+    "avatar": "/frank.png",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "",
+    "chartData": {}
+  }
+}
+------------------------
+
+[2025-10-25T20:27:00.399Z]
+{
+  "userMessage": {
+    "conversation_id": "1761424015258",
+    "text": "give me the names of 5 attorneys who work at DLA Piper",
+    "date": "2025-10-25T20:26:55.258Z",
+    "agent": "tbot",
+    "author": {
+      "name": "User"
+    },
+    "avatar": "/userProfile.jpeg",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "",
+    "chartData": {}
+  },
+  "aiMessage": {
+    "conversation_id": "1761424015258",
+    "text": "",
+    "date": "2025-10-25T20:26:55.258Z",
+    "agent": "tbot",
+    "author": {
+      "name": "ai"
+    },
+    "avatar": "/frank.png",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "",
+    "chartData": {}
+  }
+}
+------------------------
+
+[2025-10-25T20:34:54.691Z]
+{
+  "userMessage": {
+    "conversation_id": "1761424494140",
+    "text": "how many attorneys are in the database",
+    "date": "2025-10-25T20:34:54.140Z",
+    "agent": "tbot",
+    "author": {
+      "name": "User"
+    },
+    "avatar": "/userProfile.jpeg",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "",
+    "chartData": {}
+  },
+  "aiMessage": {
+    "conversation_id": "1761424494140",
+    "text": "",
+    "date": "2025-10-25T20:34:54.140Z",
+    "agent": "tbot",
+    "author": {
+      "name": "ai"
+    },
+    "avatar": "/frank.png",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "",
+    "chartData": {}
+  }
+}
+------------------------
+
+[2025-10-25T20:38:42.458Z]
+{
+  "userMessage": {
+    "conversation_id": "1761424722207",
+    "text": "how many attorneys are in the database",
+    "date": "2025-10-25T20:38:42.207Z",
+    "agent": "tbot",
+    "author": {
+      "name": "User"
+    },
+    "avatar": "/userProfile.jpeg",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "",
+    "chartData": {}
+  },
+  "aiMessage": {
+    "conversation_id": "1761424722207",
+    "text": "",
+    "date": "2025-10-25T20:38:42.207Z",
+    "agent": "tbot",
+    "author": {
+      "name": "ai"
+    },
+    "avatar": "/frank.png",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "",
+    "chartData": {}
+  }
+}
+------------------------
+
+[2025-10-25T20:40:37.024Z]
+{
+  "userMessage": {
+    "conversation_id": "1761424833688",
+    "text": "how many attorneys are in the database",
+    "date": "2025-10-25T20:40:33.688Z",
+    "agent": "tbot",
+    "author": {
+      "name": "User"
+    },
+    "avatar": "/userProfile.jpeg",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "",
+    "chartData": {}
+  },
+  "aiMessage": {
+    "conversation_id": "1761424833688",
+    "text": "The database contains a total of 98,869 attorneys.",
+    "date": "2025-10-25T20:40:33.688Z",
+    "agent": "tbot",
+    "author": {
+      "name": "ai"
+    },
+    "avatar": "/frank.png",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "\nMATCH (a:attorneys) RETURN count(a) LIMIT 1\n",
+    "chartData": {}
+  }
+}
+------------------------
+
+[2025-10-25T20:42:26.721Z]
+{
+  "userMessage": {
+    "conversation_id": "1761424943866",
+    "text": "how many attorneys are in the database",
+    "date": "2025-10-25T20:42:23.866Z",
+    "agent": "tbot",
+    "author": {
+      "name": "User"
+    },
+    "avatar": "/userProfile.jpeg",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "",
+    "chartData": {}
+  },
+  "aiMessage": {
+    "conversation_id": "1761424943866",
+    "text": "The database contains a total of 98,869 attorneys.",
+    "date": "2025-10-25T20:42:23.866Z",
+    "agent": "tbot",
+    "author": {
+      "name": "ai"
+    },
+    "avatar": "/frank.png",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "\nMATCH (a:attorneys) RETURN count(a) LIMIT 1\n",
+    "chartData": {}
+  },
+  "cypherQuery": "\nMATCH (a:attorneys) RETURN count(a) LIMIT 1\n"
+}
+------------------------
+
+[2025-10-25T20:45:34.228Z]
+{
+  "userMessage": {
+    "conversation_id": "1761425120417",
+    "text": "https://www.linkedin.com/in/mansoormamnoon/",
+    "date": "2025-10-25T20:45:20.417Z",
+    "agent": "tbot",
+    "author": {
+      "name": "User"
+    },
+    "avatar": "/userProfile.jpeg",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "",
+    "chartData": {}
+  },
+  "aiMessage": {
+    "conversation_id": "1761425120417",
+    "text": "Mansoor Mamnoon is characterized by a strong, ambitious personality with a focus on efficiency and direct communication. Here's a detailed overview of his professional traits and behaviors:\n\n**Profile Overview:**\n- Ambitious, critical, and pragmatic, with a tendency to provide clear feedback and set high expectations.\n- Direct in delegating tasks and goal-oriented, valuing brevity and efficiency.\n- Operates with an intense, systematic approach, often acting like a general: bold, pragmatic, and skeptical.\n\n**Behavioral Insights:**\n- **Communication Style:** Prefers direct and blunt communication, often telling others how they can improve performance.\n- **Motivations:** Driven by producing results, leading groups, and achieving goals with speed and efficiency.\n- **Strengths:** Stands firm in discussions, works independently, motivates others with ambitious challenges, and operates with urgency.\n- **Challenges:** May be critical of others' decisions, neglect emotional considerations, and make quick changes that could disrupt others.\n\n**Interaction Tips:**\n- **Building Trust:** Consistently display boldness, challenge with facts, and deliver on promises quickly.\n- **Following Up:** Ask specific yes/no questions, provide deadlines, and allow time for consideration.\n- **Negotiating:** Maintain control over discussions, project confidence, and articulate goals clearly.\n- **Working Together:** Stand up for your ideas, produce measurable results, and expect healthy competition.\n\n**Sales and Meetings:**\n- **Product Demos:** Clearly explain costs and benefits, anticipate pushback, and directly address pain points.\n- **Meetings:** Skip pleasantries, be punctual, communicate assertively, and focus on action items.\n- **Selling:** Be assertive, address potential problems, and avoid excessive hype.\n\n**Recommendations:**\n- **Do:** Value time efficiency, be upfront about issues, and highlight competitive advantages.\n- **Don't:** Disregard schedules, stray from focused conversations, or use vague language.\n\n**Personal Qualities:**\n- Competitive, vigorous, and efficient.\n\n**Personality Insights:**\n- **Archetype:** Architect\n- **DISC Profile:** Dominance (70), Expressiveness (48), Leniency (30), Pace (62), Pragmatism (58), Risk-Aversion (43), Skepticism (68), Social (33)\n- **Myers-Briggs Type:** ESTJ\n\nMansoor's approach is characterized by a focus on results, efficiency, and direct communication, making him a decisive and effective leader in professional settings.",
+    "date": "2025-10-25T20:45:20.417Z",
+    "agent": "tbot",
+    "author": {
+      "name": "ai"
+    },
+    "avatar": "/frank.png",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": true,
+    "isSearchContacts": false,
+    "cypher": "RETURN 'https://www.linkedin.com/in/mansoormamnoon/' as response\nLIMIT 5",
+    "chartData": {}
+  },
+  "cypherQuery": "RETURN 'https://www.linkedin.com/in/mansoormamnoon/' as response\nLIMIT 5"
+}
+------------------------
+
+[2025-10-25T21:03:53.773Z]
+{
+  "userMessage": {
+    "conversation_id": "1761426205737",
+    "text": "how many attorneys are in the database",
+    "date": "2025-10-25T21:03:25.737Z",
+    "agent": "tbot",
+    "author": {
+      "name": "User"
+    },
+    "avatar": "/userProfile.jpeg",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "",
+    "chartData": {}
+  },
+  "aiMessage": {
+    "conversation_id": "1761426205737",
+    "text": "The database contains a total of 98,869 attorneys.",
+    "date": "2025-10-25T21:03:25.737Z",
+    "cypher": "\nMATCH (a:attorneys) \nRETURN count(a) \nLIMIT 1\n",
+    "chartData": {}
+  },
+  "cypherQuery": "\nMATCH (a:attorneys) \nRETURN count(a) \nLIMIT 1\n"
+}
+------------------------
+
+[2025-10-25T21:05:42.383Z]
+{
+  "userMessage": {
+    "conversation_id": "1761426336783",
+    "text": "how many attorneys in the database",
+    "date": "2025-10-25T21:05:36.783Z",
+    "agent": "tbot",
+    "author": {
+      "name": "User"
+    },
+    "avatar": "/userProfile.jpeg",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "",
+    "chartData": {}
+  },
+  "aiMessage": {
+    "conversation_id": "1761426336783",
+    "text": "The database contains a total of 98,869 attorneys.",
+    "date": "2025-10-25T21:05:36.783Z",
+    "author": {
+      "name": "ai"
+    },
+    "cypher": "\nMATCH (a:attorneys) RETURN count(a) LIMIT 1\n",
+    "chartData": {}
+  },
+  "cypherQuery": "\nMATCH (a:attorneys) RETURN count(a) LIMIT 1\n"
+}
+------------------------
+
+[2025-10-25T21:06:36.256Z]
+{
+  "userMessage": {
+    "conversation_id": "1761426392474",
+    "text": "how many attorneys in the database",
+    "date": "2025-10-25T21:06:32.474Z",
+    "agent": "tbot",
+    "author": {
+      "name": "User"
+    },
+    "avatar": "/userProfile.jpeg",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "",
+    "chartData": {}
+  },
+  "aiMessage": {
+    "conversation_id": "1761426392474",
+    "text": "The database contains a total of 98,869 attorneys.",
+    "date": "2025-10-25T21:06:32.474Z",
+    "agent": "tbot",
+    "author": {
+      "name": "ai"
+    },
+    "avatar": "/frank.png",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "\nMATCH (a:attorneys) RETURN count(a) LIMIT 1\n",
+    "chartData": {}
+  },
+  "cypherQuery": "\nMATCH (a:attorneys) RETURN count(a) LIMIT 1\n"
+}
+------------------------
+
+[2025-10-25T21:20:11.444Z]
+{
+  "userMessage": {
+    "conversation_id": "1761427196400",
+    "text": "how many attorneys are in the database",
+    "date": "2025-10-25T21:19:56.400Z",
+    "agent": "tbot",
+    "author": {
+      "name": "User"
+    },
+    "avatar": "/userProfile.jpeg",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "",
+    "chartData": {}
+  },
+  "aiMessage": {
+    "conversation_id": "1761427196400",
+    "text": "The database contains a total of 98,869 attorneys.",
+    "date": "2025-10-25T21:19:56.400Z",
+    "agent": "tbot",
+    "author": {
+      "name": "ai"
+    },
+    "avatar": "/frank.png",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "\nMATCH (a:attorneys) RETURN count(a) LIMIT 1\n",
+    "chartData": {}
+  },
+  "cypherQuery": "\nMATCH (a:attorneys) RETURN count(a) LIMIT 1\n"
+}
+------------------------
+
+[2025-10-25T21:21:46.837Z]
+{
+  "userMessage": {
+    "conversation_id": "1761427302828",
+    "text": "how many attorneys are in the database",
+    "date": "2025-10-25T21:21:42.828Z",
+    "agent": "tbot",
+    "author": {
+      "name": "User"
+    },
+    "avatar": "/userProfile.jpeg",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "",
+    "chartData": {}
+  },
+  "aiMessage": {
+    "conversation_id": "1761427302828",
+    "text": "The database contains a total of 98,869 attorneys.",
+    "date": "2025-10-25T21:21:42.828Z",
+    "agent": "tbot",
+    "author": {
+      "name": "ai"
+    },
+    "avatar": "/frank.png",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "\nMATCH (a:attorneys)\nRETURN count(a)\nLIMIT 1\n",
+    "chartData": {}
+  },
+  "cypherQuery": "\nMATCH (a:attorneys)\nRETURN count(a)\nLIMIT 1\n"
+}
+------------------------
+
+[2025-10-25T21:30:42.786Z]
+{
+  "userMessage": {
+    "conversation_id": "1761427828557",
+    "text": "how many attorneys in the database",
+    "date": "2025-10-25T21:30:28.557Z",
+    "agent": "tbot",
+    "author": {
+      "name": "User"
+    },
+    "avatar": "/userProfile.jpeg",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "",
+    "chartData": {}
+  },
+  "aiMessage": {
+    "conversation_id": "1761427828557",
+    "text": "The database contains a total of 98,869 attorneys.",
+    "date": "2025-10-25T21:30:28.557Z",
+    "agent": "tbot",
+    "author": {
+      "name": "ai"
+    },
+    "avatar": "/frank.png",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "\nMATCH (a:attorneys)\nRETURN count(a) AS numberOfAttorneys\nLIMIT 1\n",
+    "chartData": {}
+  },
+  "cypherQuery": "\nMATCH (a:attorneys)\nRETURN count(a) AS numberOfAttorneys\nLIMIT 1\n"
+}
+------------------------
+
+[2025-10-25T21:31:28.359Z]
+{
+  "userMessage": {
+    "conversation_id": "1761427883122",
+    "text": "give me the names of 5 attorneys who work at Kirkland Ellis",
+    "date": "2025-10-25T21:31:23.122Z",
+    "agent": "tbot",
+    "author": {
+      "name": "User"
+    },
+    "avatar": "/userProfile.jpeg",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "",
+    "chartData": {}
+  },
+  "aiMessage": {
+    "conversation_id": "1761427883122",
+    "text": "I'm sorry, but I couldn't find any relevant information for your request. It's possible that I'm not yet trained to handle this specific query. However, I'm continuously improving, so please feel free to try asking your question differently, and I'll do my best to assist you.",
+    "date": "2025-10-25T21:31:23.122Z",
+    "agent": "tbot",
+    "author": {
+      "name": "ai"
+    },
+    "avatar": "/frank.png",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "\nMATCH (a:attorneys)-[:WORKS_AT]-(f:LawFirm)\nWHERE toLower(f.firm_name) = \"kirkland ellis\"\nRETURN a\nLIMIT 5\n",
+    "chartData": {}
+  },
+  "cypherQuery": "\nMATCH (a:attorneys)-[:WORKS_AT]-(f:LawFirm)\nWHERE toLower(f.firm_name) = \"kirkland ellis\"\nRETURN a\nLIMIT 5\n"
+}
+------------------------
+
+[2025-10-25T21:32:30.562Z]
+{
+  "userMessage": {
+    "conversation_id": "1761427933865",
+    "text": "give me the names of 5 attorneys who work at Kirkland & Ellis",
+    "date": "2025-10-25T21:32:13.865Z",
+    "agent": "tbot",
+    "author": {
+      "name": "User"
+    },
+    "avatar": "/userProfile.jpeg",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "",
+    "chartData": {}
+  },
+  "aiMessage": {
+    "conversation_id": "1761427933865",
+    "text": "Certainly! Here are the profiles of five attorneys working at Kirkland & Ellis:\n\n1. **Anthony Abate**\n   - **Location:** Chicago, IL\n   - **Phone:** +1 312 862 3563\n   - **Email:** anthony.abate@kirkland.com\n   - **Education:** University of Illinois--Chicago (Law School, magna cum laude)\n   - **Bar Admission:** Illinois\n   - **Biography:** Anthony is a restructuring associate at Kirkland & Ellis LLP. More details can be found on his [profile](https://www.kirkland.com/lawyers/a/abate-anthony).\n\n2. **James Abate**\n   - **Location:** New York, NY\n   - **Phone:** +1 212 341 7879\n   - **Email:** james.abate@kirkland.com\n   - **Education:** University of California, Berkeley (Law School), Georgetown University (Undergraduate)\n   - **Bar Admission:** New Hampshire\n   - **Specialties:** Capital Markets, Transactional\n   - **Biography:** James is a capital markets associate with a broad transactional practice. He advises on capital markets transactions and corporate governance. More details can be found on his [profile](https://www.kirkland.com/lawyers/a/abate-james).\n\n3. **Rajab Abbassi**\n   - **Location:** New York, NY\n   - **Phone:** +1 212 446 4741\n   - **Email:** rajab.abbassi@kirkland.com\n   - **Education:** Fordham University (Law School), Rutgers University (Undergraduate)\n   - **Bar Admission:** New Hampshire\n   - **Specialties:** Mergers & Acquisitions, Private Equity, Insurance Transactions & Regulatory\n   - **Biography:** Rajab is a partner in the Corporate Practice Group, focusing on corporate transactions in the insurance industry. More details can be found on his [profile](https://www.kirkland.com/lawyers/a/abbassi-rajab).\n\n4. **Gabrielle Abbe**\n   - **Location:** Chicago, IL\n   - **Phone:** +1 312 862 4287\n   - **Email:** gabrielle.abbe@kirkland.com\n   - **Education:** Northwestern University (Pritzker Law School, cum laude)\n   - **Bar Admission:** Illinois\n   - **Biography:** Gabrielle is a restructuring associate at Kirkland & Ellis LLP. More details can be found on her [profile](https://www.kirkland.com/lawyers/a/abbe-gabrielle-christine).\n\n5. **Peter Abbott**\n   - **Location:** London, UK\n   - **Phone:** T +44 20 7469 2330\n   - **Email:** peter.abbott@kirkland.com\n   - **Specialties:** Tax aspects of M&A transactions, UK and international private equity\n   - **Biography:** Peter is a tax partner advising on tax structuring of transactions. He is a Chartered Tax Adviser. More details can be found on his [profile](https://www.kirkland.com/lawyers/a/abbott-peter).\n\nThese profiles provide a snapshot of the attorneys' professional backgrounds and areas of expertise.",
+    "date": "2025-10-25T21:32:13.865Z",
+    "agent": "tbot",
+    "author": {
+      "name": "ai"
+    },
+    "avatar": "/frank.png",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "\nMATCH (a:attorneys)-[:WORKS_AT]-(f:LawFirm)\nWHERE toLower(f.firm_name) = \"kirkland & ellis\"\nRETURN a\nLIMIT 5\n",
+    "chartData": {}
+  },
+  "cypherQuery": "\nMATCH (a:attorneys)-[:WORKS_AT]-(f:LawFirm)\nWHERE toLower(f.firm_name) = \"kirkland & ellis\"\nRETURN a\nLIMIT 5\n"
+}
+------------------------
+
+[2025-10-25T21:33:25.131Z]
+{
+  "userMessage": {
+    "conversation_id": "1761428000645",
+    "text": "what are the practice areas of Peter Abbott",
+    "date": "2025-10-25T21:33:20.646Z",
+    "agent": "tbot",
+    "author": {
+      "name": "User"
+    },
+    "avatar": "/userProfile.jpeg",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "",
+    "chartData": {}
+  },
+  "aiMessage": {
+    "conversation_id": "1761428000645",
+    "text": "I'm sorry, but I couldn't find any relevant information for your request. It might be that I'm not yet trained to handle this specific query. However, I'm continuously improving, so please feel free to try asking your question differently, and I'll do my best to assist you.",
+    "date": "2025-10-25T21:33:20.646Z",
+    "agent": "tbot",
+    "author": {
+      "name": "ai"
+    },
+    "avatar": "/frank.png",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "\nMATCH (a:attorneys)-[:HAS_EXPERIENCE]-(p:PracticeAreas)\nWHERE a.firstName = \"Peter\" AND a.lastName = \"Abbott\"\nRETURN p\nLIMIT 25\n",
+    "chartData": {}
+  },
+  "cypherQuery": "\nMATCH (a:attorneys)-[:HAS_EXPERIENCE]-(p:PracticeAreas)\nWHERE a.firstName = \"Peter\" AND a.lastName = \"Abbott\"\nRETURN p\nLIMIT 25\n"
+}
+------------------------
+
+[2025-10-25T21:43:11.156Z]
+{
+  "userMessage": {
+    "conversation_id": "1761428587173",
+    "text": "what law school did Peter Abbott attend",
+    "date": "2025-10-25T21:43:07.173Z",
+    "agent": "tbot",
+    "author": {
+      "name": "User"
+    },
+    "avatar": "/userProfile.jpeg",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "",
+    "chartData": {}
+  },
+  "aiMessage": {
+    "conversation_id": "1761428587173",
+    "text": "I'm sorry, but I couldn't find any relevant information for your request. It might be that I'm not yet trained to handle this specific query. However, I'm continuously improving, so please feel free to try asking your question differently, and I'll do my best to assist you.",
+    "date": "2025-10-25T21:43:07.173Z",
+    "agent": "tbot",
+    "author": {
+      "name": "ai"
+    },
+    "avatar": "/frank.png",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "\nMATCH (a:attorneys {firstName: \"Peter\", lastName: \"Abbott\"})-[:STUDIED_AT]-(l:LawSchools)\nRETURN l\nLIMIT 1\n",
+    "chartData": {}
+  },
+  "cypherQuery": "\nMATCH (a:attorneys {firstName: \"Peter\", lastName: \"Abbott\"})-[:STUDIED_AT]-(l:LawSchools)\nRETURN l\nLIMIT 1\n"
+}
+------------------------
+
+[2025-10-25T21:44:13.273Z]
+{
+  "userMessage": {
+    "conversation_id": "1761428649133",
+    "text": "what law school did Gabrielle Abbe attend",
+    "date": "2025-10-25T21:44:09.133Z",
+    "agent": "tbot",
+    "author": {
+      "name": "User"
+    },
+    "avatar": "/userProfile.jpeg",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "",
+    "chartData": {}
+  },
+  "aiMessage": {
+    "conversation_id": "1761428649133",
+    "text": "Gabrielle Abbe attended Northwestern University (Pritzker) for law school. Here are some details about the school:\n\n- **Location:** Chicago, IL\n- **Rank:** 9\n- **Median LSAT Score:** 172\n- **Full-Time Enrollment:** 763 students\n- **Tuition:** $74,552 (full-time)\n- **Employer Rating:** 71.2\n- **Academic Rating:** 68.7\n- **Citations Rating:** 89.1\n- **Overall Score:** 72.9\n- **H Rating:** 85.1",
+    "date": "2025-10-25T21:44:09.133Z",
+    "agent": "tbot",
+    "author": {
+      "name": "ai"
+    },
+    "avatar": "/frank.png",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "\nMATCH (a:attorneys {firstName: \"Gabrielle\", lastName: \"Abbe\"})-[:STUDIED_AT]-(l:LawSchools)\nRETURN l\nLIMIT 1\n",
+    "chartData": {}
+  },
+  "cypherQuery": "\nMATCH (a:attorneys {firstName: \"Gabrielle\", lastName: \"Abbe\"})-[:STUDIED_AT]-(l:LawSchools)\nRETURN l\nLIMIT 1\n"
+}
+------------------------
+
+[2025-10-25T21:44:25.046Z]
+{
+  "userMessage": {
+    "conversation_id": "1761428662467",
+    "text": "what undergrad school did Gabrielle Abbe attend",
+    "date": "2025-10-25T21:44:22.467Z",
+    "agent": "tbot",
+    "author": {
+      "name": "User"
+    },
+    "avatar": "/userProfile.jpeg",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "",
+    "chartData": {}
+  },
+  "aiMessage": {
+    "conversation_id": "1761428662467",
+    "text": "Gabrielle Abbe did not attend an undergraduate school, as there is no information available regarding her undergrad education.",
+    "date": "2025-10-25T21:44:22.467Z",
+    "agent": "tbot",
+    "author": {
+      "name": "ai"
+    },
+    "avatar": "/frank.png",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "\nMATCH (a:attorneys {firstName: \"Gabrielle\", lastName: \"Abbe\"})\nRETURN a.undergradschool\nLIMIT 1\n",
+    "chartData": {}
+  },
+  "cypherQuery": "\nMATCH (a:attorneys {firstName: \"Gabrielle\", lastName: \"Abbe\"})\nRETURN a.undergradschool\nLIMIT 1\n"
+}
+------------------------
+
+[2025-10-25T21:45:00.801Z]
+{
+  "userMessage": {
+    "conversation_id": "1761428694696",
+    "text": "what do you know about Raymond Russell",
+    "date": "2025-10-25T21:44:54.696Z",
+    "agent": "tbot",
+    "author": {
+      "name": "User"
+    },
+    "avatar": "/userProfile.jpeg",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "",
+    "chartData": {}
+  },
+  "aiMessage": {
+    "conversation_id": "1761428694696",
+    "text": "Raymond \"Rusty\" Russell is a distinguished attorney based in Mobile, Alabama, working as a Partner and Economic Development Team Leader at Adams and Reese LLP. He specializes in several areas of law, including:\n\n- Corporate Law\n- Economic Development\n- Forestry\n- Global Trade & Transportation\n- Mergers & Acquisitions\n- Public Finance\n- Telephone Consumer Protection Act (TCPA)\n- Utilities & Telecommunications\n\nRusty has a strong educational background, having earned his Bachelor of Science (BS) from Louisiana Tech University in 1992 and his Juris Doctor (JD) from Mississippi College in 1996. He is admitted to the bar in Alabama.\n\nHis professional biography highlights his expertise in guiding clients through corporate law, commercial transactions, school law, public finance, new markets tax credits, economic development, and banking. Rusty has played a pivotal role in securing financing transactions worth several billion dollars, particularly in the oil and gas sector. He has also represented numerous clients in company acquisitions and sales, as well as significant asset transactions.\n\nFor more information, you can reach him via email at rusty.russell@arlaw.com or by phone at 251.650.0859. Additional details about his professional journey and accomplishments can be found on his [profile page](https://www.adamsandreese.com/people/raymond-russell). His professional photo is available [here](https://www.adamsandreese.com/hubfs/People/Resized%20600x400/Russell_Rusty_600x400.jpg).",
+    "date": "2025-10-25T21:44:54.696Z",
+    "agent": "tbot",
+    "author": {
+      "name": "ai"
+    },
+    "avatar": "/frank.png",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "\nMATCH (a:attorneys)\nWHERE a.firstName = \"Raymond\" AND a.lastName = \"Russell\"\nRETURN a\nLIMIT 1\n",
+    "chartData": {}
+  },
+  "cypherQuery": "\nMATCH (a:attorneys)\nWHERE a.firstName = \"Raymond\" AND a.lastName = \"Russell\"\nRETURN a\nLIMIT 1\n"
+}
+------------------------
+
+[2025-10-25T21:45:17.697Z]
+{
+  "userMessage": {
+    "conversation_id": "1761428714425",
+    "text": "what law school did he attend",
+    "date": "2025-10-25T21:45:14.425Z",
+    "agent": "tbot",
+    "author": {
+      "name": "User"
+    },
+    "avatar": "/userProfile.jpeg",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "",
+    "chartData": {}
+  },
+  "aiMessage": {
+    "conversation_id": "1761428714425",
+    "text": "He attended Mississippi College Law School, which is located in Jackson, Mississippi. The school has a full-time enrollment of 362 students and is ranked 168th. The median LSAT score for admission is 150. Tuition for full-time students is $38,202.",
+    "date": "2025-10-25T21:45:14.425Z",
+    "agent": "tbot",
+    "author": {
+      "name": "ai"
+    },
+    "avatar": "/frank.png",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "\nMATCH (a:attorneys)-[:STUDIED_AT]-(l:LawSchools)\nWHERE a.firstName = \"Raymond\" AND a.lastName = \"Russell\"\nRETURN l\nLIMIT 1\n",
+    "chartData": {}
+  },
+  "cypherQuery": "\nMATCH (a:attorneys)-[:STUDIED_AT]-(l:LawSchools)\nWHERE a.firstName = \"Raymond\" AND a.lastName = \"Russell\"\nRETURN l\nLIMIT 1\n"
+}
+------------------------
