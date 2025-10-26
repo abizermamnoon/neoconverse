@@ -24,7 +24,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // Append to log file
         fs.appendFileSync(logFile, logEntry);
 
-        // If S3 bucket is configured, upload the log file to S3
+        // If S3 bucket is configured, upload the new log entry to S3 as a separate object
+        // This avoids overwriting a single key on S3 and makes storage append-only.
         const bucketName = process.env.S3_BUCKET_NAME || process.env.NEXT_PUBLIC_S3_BUCKET || process.env.AWS_S3_BUCKET;
         if (bucketName) {
             try {
@@ -32,20 +33,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 const region = process.env.AWS_REGION || process.env.NEXT_PUBLIC_AWS_REGION || 'us-east-1';
                 const s3Client = new S3Client({ region });
 
-                const fileBody = fs.readFileSync(logFile);
-                const key = 'frank/chat_logs.txt';
+                // Upload only the new log entry as its own object so we don't overwrite an existing file
+                const entryKey = `frank/chat_logs_entry_${Date.now()}.txt`;
 
                 const put = new PutObjectCommand({
                     Bucket: bucketName,
-                    Key: key,
-                    Body: fileBody,
+                    Key: entryKey,
+                    Body: logEntry,
                     ContentType: 'text/plain'
                 });
 
                 await s3Client.send(put);
             } catch (s3Err) {
                 // Log S3 errors but don't fail the request so local logging still works
-                console.error('Failed to upload logs to S3:', s3Err);
+                console.error('Failed to upload log entry to S3:', s3Err);
             }
         }
 

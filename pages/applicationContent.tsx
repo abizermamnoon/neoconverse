@@ -163,7 +163,7 @@ const ApplicationContent: NextPage = () => {
       console.log("Fetched messages:", fetchedMessages);
   
       // Proceed with the existing logic
-      setContext("");
+      //setContext("");
       setUserInput("");
       setInitialContext(agent.schema);    
       setFewShot(agent.fewshot);
@@ -325,13 +325,23 @@ const ApplicationContent: NextPage = () => {
     setLoading(true);
 
 
-    if(context === "")
-    {
-      setContext((prev) => prev + '\n' +userInput.toString()+ '\n');
-    }
-    else
-    {
-      setContext((prev) => prev + '\n\n' +userInput.toString()+ '\n');
+    // Set context to the contents of the logs from /api/getLogs
+    try {
+      const resp = await fetch('/api/getLogs');
+      if (resp.ok) {
+        const json = await resp.json();
+        const logsContent = json.content || '';
+        // Append logs content to existing context instead of replacing it
+        if (logsContent) {
+          setContext((prev) => (prev && prev.length > 0) ? prev + '\n\n' + logsContent : logsContent);
+        }
+      } else {
+        // don't overwrite existing context on failure; just log
+        console.error('Failed to load logs for context:', resp.statusText);
+      }
+    } catch (err) {
+      console.error('Error loading logs for context:', err);
+      // keep existing context on error
     }
 
     console.log('context:', context); 
@@ -507,7 +517,7 @@ const ApplicationContent: NextPage = () => {
               const { done, value } = await reader?.read();
               let chunkValue = new TextDecoder().decode(value);
               result+=chunkValue;
-              setContext((prev) => prev + chunkValue);
+              //setContext((prev) => prev + chunkValue);
               !respondWithChart ?  userData[userData.length-1].text = userData[userData.length-1].text + chunkValue : ""
               finalMessage+=chunkValue;
               // console.log("Final response text from LLM", finalMessage);
@@ -531,7 +541,7 @@ const ApplicationContent: NextPage = () => {
             console.log('final message from google or crystal knows or search contacts:', finalMessage);
           }
 
-          setContext((prev) => prev + finalMessage);
+          //setContext((prev) => prev + finalMessage);
           userData[userData.length - 1].text += finalMessage;
           // console.log("Final response text from LLM google search", finalMessage);
           console.log('context:', context);
@@ -539,7 +549,7 @@ const ApplicationContent: NextPage = () => {
         }
         else {
                 finalMessage = finalResponse.toString();
-                setContext((prev) => prev + finalMessage);
+                //setContext((prev) => prev + finalMessage);
             }   
         console.log('context:', context);
         setLoading(false);
@@ -606,7 +616,7 @@ const ApplicationContent: NextPage = () => {
             const { done, value } = await reader?.read();
             let chunkValue = new TextDecoder().decode(value);
             result+=chunkValue;
-            setContext((prev) => prev + chunkValue);
+            //setContext((prev) => prev + chunkValue);
             !respondWithChart ?  userData[userData.length-1].text = userData[userData.length-1].text + chunkValue : ""
             if (done) {
                 break;
