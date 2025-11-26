@@ -88,21 +88,35 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
       </Head>
       {/* <Header /> */}
-      <main style={{ overflowY: "scroll", height: "100vh" }}>
+      <main style={{ overflowY: "scroll", height: "100vh", background: '#ffffff', color: '#000000' }}>
         <Grid container spacing={12}
-          sx={{ paddingTop: '8px', background: "rgba(251, 249, 246, 1)" }}
+          sx={{ paddingTop: '8px', background: 'transparent' }}
         >
           <Grid item xs={2}
             style={{ verticalAlign: "center", }}
             sx={{
               width: '100%',
               height: '100%,',
-              backgroundImage: 'url(/shape3_top.png)',
+              // backgroundImage: 'url(/shape3_top.png)',
               backgroundSize: 'cover',
               backgroundPosition: 'center', // Center the background image
               backgroundRepeat: 'no-repeat', // Prevent the image from repeating
             }}
           >
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, paddingLeft: 12, paddingTop: 8 }}>
+              <img
+                src="/talent_engines_logo.jpg"
+                alt="Talent Engines"
+                height={80}
+                style={{ width: 'auto', display: 'block' }}
+              />
+              <img
+                src="/frank.png"
+                alt="Frank"
+                height={48}
+                style={{ width: 'auto', display: 'block' }}
+              />
+            </div>
           </Grid>
           <Grid item xs={9}
           >
@@ -110,12 +124,10 @@ const Home: NextPage = () => {
             >
               
               <Typography style={{ letterSpacing: "0.1em", color: "rgba(42, 96, 140, 1)", whiteSpace: "pre-wrap", textAlign: 'left', fontSize: "40px", fontWeight: 600 }}
-              >Frank
+              >
               </Typography>
               {/* Switching to FontAwesome so I can make a favicon */}
-              <div style={{ width: 24, height: 24 }}>
-                <FontAwesomeIcon icon={faComments} style={{ color: "rgba(240, 148, 114, 1)" }} />
-              </div>
+              
               <div style={{
                 display: 'flex',
                 alignItems: 'flex-end',
@@ -126,7 +138,6 @@ const Home: NextPage = () => {
                 <Typography variant="caption" display="block" gutterBottom
                   style={{ textAlign: 'left', color: "rgba(42, 96, 140, 1)" }}
                 >
-                  Delivering insights  - fast!
                 </Typography>
               </div>
             </Stack>
@@ -160,7 +171,6 @@ const Home: NextPage = () => {
                   </Select>
                 </FormControl>
                 }
-                <LogoutLink suppressHydrationWarning />
               </Stack>
             </Item>
           </Grid>
