@@ -135,6 +135,7 @@ const AgentList = (props) => {
                     backgroundSize: 'contain',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'repeat',
+                    bgcolor: '#606060'
                 }} 
             >
                 <Typography
@@ -175,7 +176,7 @@ const AgentList = (props) => {
                         borderTop: '2px dotted lightgray',
                         // marginTop: '3px',
                         borderColor: 'grey.300',
-                        bgcolor: 'background.paper',
+                        bgcolor: '#606060',
                         "&& .Mui-selected": {
                             backgroundColor: "#bdbdbd", paddingLeft: "20px"
                         }
@@ -305,7 +306,7 @@ const AgentList = (props) => {
                         borderTop: '2px dotted lightgray',
                         marginTop: '3px',
                         borderColor: 'grey.300',
-                        bgcolor: 'background.paper',
+                        bgcolor: '#606060',
                         "&& .Mui-selected": {
                             backgroundColor: "#bdbdbd", paddingLeft: "20px"
                         }

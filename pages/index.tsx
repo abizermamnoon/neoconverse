@@ -31,19 +31,7 @@ const LogoutLink = () => {
   // Replace this with your actual authentication method check logic
   const authMethod = 'Auth0'; // Example: Replace with your actual authentication method
 
-  return (
-    authMethod === 'Auth0' ? (
-      <img
-                height="40"
-                width="auto"
-                src="/talent_engines_logo.jpg"
-                alt="Logo"
-                style={{ marginRight: '18px', marginTop: '12px' }}
-              />
-    ) : (
-      <></>
-    )
-  );
+
 }
 
 const Home: NextPage = () => {
@@ -68,7 +56,7 @@ const Home: NextPage = () => {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: '90%',
-    bgcolor: 'background.paper',
+    bgcolor: '#606060',
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
@@ -90,46 +78,37 @@ const Home: NextPage = () => {
       {/* <Header /> */}
       <main style={{ overflowY: "scroll", height: "100vh" }}>
         <Grid container spacing={12}
-          sx={{ paddingTop: '8px', background: "rgba(251, 249, 246, 1)" }}
+          sx={{ paddingTop: '8px', background: '#606060' }}
         >
           <Grid item xs={2}
             style={{ verticalAlign: "center", }}
             sx={{
               width: '100%',
-              height: '100%,',
-              backgroundImage: 'url(/shape3_top.png)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center', // Center the background image
-              backgroundRepeat: 'no-repeat', // Prevent the image from repeating
+              height: '100%',
+              // removed decorative background image
+              backgroundImage: 'none',
+              backgroundSize: 'auto',
+              backgroundPosition: 'initial',
+              backgroundRepeat: 'no-repeat',
             }}
           >
+            <div style={{ display: 'flex', alignItems: 'center', height: '100%', paddingLeft: 12, gap: '18px' }}>
+              <img
+                src="/talent_engines_logo.jpg"
+                alt="Talent Engines"
+                style={{ height: '100px', width: 'auto' }}
+              />
+              <img
+                src="/frank_transparent.png"
+                alt="Frank"
+                style={{ height: '60px', width: 'auto' }}
+              />
+            </div>
           </Grid>
           <Grid item xs={9}
           >
-            <Stack direction="row" justifyContent={"center"} spacing={0} style={{ paddingLeft: 10 }}
-            >
-              
-              <Typography style={{ letterSpacing: "0.1em", color: "rgba(42, 96, 140, 1)", whiteSpace: "pre-wrap", textAlign: 'left', fontSize: "40px", fontWeight: 600 }}
-              >Frank
-              </Typography>
-              {/* Switching to FontAwesome so I can make a favicon */}
-              <div style={{ width: 24, height: 24 }}>
-                <FontAwesomeIcon icon={faComments} style={{ color: "rgba(240, 148, 114, 1)" }} />
-              </div>
-              <div style={{
-                display: 'flex',
-                alignItems: 'flex-end',
-                marginLeft: '10px',
-                fontStyle: 'italic',
-                height: '2.5em'
-              }}>
-                <Typography variant="caption" display="block" gutterBottom
-                  style={{ textAlign: 'left', color: "rgba(42, 96, 140, 1)" }}
-                >
-                  Delivering insights  - fast!
-                </Typography>
-              </div>
-            </Stack>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+            </div>
           </Grid>
         
           <Grid item xs={1}
@@ -144,7 +123,7 @@ const Home: NextPage = () => {
             }}
           >
             <Item>
-              <Stack direction="row" spacing={0} style={{ paddingLeft: 10, justifyContent: "flex-end" }}
+              <Stack direction="row" spacing={0} alignItems="center" style={{ paddingLeft: 10, justifyContent: "flex-end" }}
               >
                 {showOptions && <FormControl size="small"
                   style={{ color: "rgba(0, 0, 0, 0.6)", fontWeight: 400, fontSize: 15, fontFamily: "sans-serif", paddingLeft: 10 }}
@@ -160,7 +139,7 @@ const Home: NextPage = () => {
                   </Select>
                 </FormControl>
                 }
-                <LogoutLink suppressHydrationWarning />
+                <LogoutLink />
               </Stack>
             </Item>
           </Grid>

@@ -131,27 +131,37 @@ const Chat = (props) => {
 
     return (
         <>
-            <Stack style={{
-                color: "rgba(0, 0, 0, 0.6)", paddingTop: "12px", paddingBottom: "12px", marginLeft: -5, overflow: 'auto', fontWeight: 600, fontSize: 18, fontFamily: "sans-serif",
-                backgroundImage: 'url(/shape3_bottom_copy.png)',
-                backgroundSize: 'contain', // Ensure the full image is visible
-                backgroundPosition: 'center', // Center the background image
-                backgroundRepeat: 'repeat', // Prevent the image from repeating
-            }}
-            >
-                Chat </Stack>
-            <List sx={{
+            <Box sx={{
                 width: '100%',
-                height: `calc(100vh - ${getChatHeight()}px)`,
-                borderLeft: 1,
-                borderColor: 'grey.300',
-                bgcolor: 'background.paper',
-                
-                borderTop: '2px dotted lightgray',
-                borderBottom: '2px dotted lightgray',
-                overflowY: 'auto',
-                // marginTop: '19px',
+                height: '100%',
+                borderRadius: '12px',
+                bgcolor: '#464646ff',
+                border: '1px solid rgba(255,255,255,0.12)',
+                boxSizing: 'border-box',
+                display: 'flex',
+                flexDirection: 'column',
+                overflow: 'hidden',
+                padding: '8px',
+                paddingBottom: '20px'
             }}>
+                <Box sx={{
+                    width: '100%',
+                    padding: '6px 12px',
+                    borderBottom: '1px solid rgba(255,255,255,0.06)',
+                    display: 'flex',
+                    alignItems: 'center'
+                }}>
+                    <Typography sx={{ color: 'rgba(255,255,255,0.95)', fontWeight: 700, fontSize: 18 }}>Chat</Typography>
+                </Box>
+
+                <List sx={{
+                    width: '100%',
+                    flex: 1,
+                    bgcolor: 'transparent',
+                    overflowY: 'auto',
+                    padding: 0,
+                    margin: 0,
+                }}>
                 {messages.map((m, i) => (
                     // <ChatMessage key={`message-${i}`} message={m} />
                     <div className="chat-message" key={i}>
@@ -166,7 +176,7 @@ const Chat = (props) => {
                                         secondary={
                                             <React.Fragment>
                                                 <Typography
-                                                    sx={{ display: 'inline', color: "rgba(0, 0, 0, 0.6)", fontWeight: 400, fontSize: 15, fontFamily: "sans-serif" }}
+                                                    sx={{ display: 'inline', color: "rgba(255, 255, 255, 0.95)", fontWeight: 400, fontSize: 15, fontFamily: "sans-serif" }}
                                                     component="span"
                                                     variant="caption"
                                                     color="text.primary"
@@ -181,7 +191,7 @@ const Chat = (props) => {
                             }
                             {i != 0 && !m.isChart && (
                                 <ListItemText disableTypography
-                                    style={{ whiteSpace: "pre-wrap", color: "rgba(0, 0, 0, 0.6)", fontWeight: 400, fontSize: 15, fontFamily: "sans-serif" }}
+                                    style={{ whiteSpace: "pre-wrap", color: "rgba(255, 255, 255, 0.95)", fontWeight: 400, fontSize: 15, fontFamily: "sans-serif" }}
                                     secondary={
                                         <React.Fragment>
                                             <MuiMarkdown
@@ -196,19 +206,19 @@ const Chat = (props) => {
                                                     h5: {
                                                         component: 'p',
                                                         props: {
-                                                            style: { color: "rgba(0, 0, 0, 0.6)", paddingLeft: "20px", marginLeft: -5, overflow: 'auto', fontWeight: 600, fontSize: 15, fontFamily: "sans-serif" },
+                                                            style: { color: "rgba(255, 255, 255, 0.95)", paddingLeft: "20px", marginLeft: -5, overflow: 'auto', fontWeight: 600, fontSize: 15, fontFamily: "sans-serif" },
                                                         } as React.HTMLProps<HTMLParagraphElement>,
                                                     },
                                                     p: {
                                                         component: 'p',
                                                         props: {
-                                                            style: { color: "rgba(0, 0, 0, 0.6)", paddingLeft: "20px", marginLeft: -5, overflow: 'auto', fontWeight: 400, fontSize: 15, fontFamily: "sans-serif" },
+                                                            style: { color: "rgba(255, 255, 255, 0.95)", paddingLeft: "20px", marginLeft: -5, overflow: 'auto', fontWeight: 400, fontSize: 15, fontFamily: "sans-serif" },
                                                         } as React.HTMLProps<HTMLParagraphElement>,
                                                     },
                                                     li: {
                                                         component: 'li',
                                                         props: {
-                                                            style: { color: "rgba(0, 0, 0, 0.6)", paddingLeft: "20px", marginLeft: -5, overflow: 'auto', fontWeight: 400, fontSize: 15, fontFamily: "sans-serif" },
+                                                            style: { color: "rgba(110, 110, 110, 0.95)", paddingLeft: "20px", marginLeft: -5, overflow: 'auto', fontWeight: 400, fontSize: 15, fontFamily: "sans-serif" },
                                                         } as React.HTMLProps<HTMLParagraphElement>,
                                                     }
                                                 }}
@@ -241,13 +251,13 @@ const Chat = (props) => {
                             )
                             }
                             {i != 0 && m.isChart && m.chartData.toString() === '' && (
-                                <ListItemText disableTypography
-                                    style={{ whiteSpace: "pre-wrap", color: "rgba(0, 0, 0, 0.6)", fontWeight: 400, fontSize: 15, fontFamily: "sans-serif" }}
+                                    <ListItemText disableTypography
+                                        style={{ whiteSpace: "pre-wrap", color: "rgba(110, 110, 110, 0.95)", fontWeight: 400, fontSize: 15, fontFamily: "sans-serif" }}
                                     // primary={m.text} 
                                     secondary={
                                         <React.Fragment>
                                             <Typography
-                                                sx={{ display: 'inline', color: "rgba(0, 0, 0, 0.6)", fontWeight: 400, fontSize: 15, fontFamily: "sans-serif" }}
+                                                sx={{ display: 'inline', color: "rgba(110, 110, 110, 0.95)", fontWeight: 400, fontSize: 15, fontFamily: "sans-serif" }}
                                                 component="span"
                                                 variant="caption"
                                                 color="text.primary"
@@ -264,7 +274,7 @@ const Chat = (props) => {
                             }
                             {loading && i === messages.length - 1 && (
                                 <span>
-                                    <LoadingDots color="black" style="large" marginLeft="-500px" />
+                                    <LoadingDots color="white" style="large" marginLeft="-500px" />
                                 </span>
                             )
                             }
@@ -283,76 +293,108 @@ const Chat = (props) => {
                     </ListItem> */}
                     </div>
                 ))}
-            </List>
-            <TextField ref={howCanIHelpRef} fullWidth id="standard-basic" label="How can I help you today?" variant="standard"
-    sx={{ fontWeight: 400, fontSize: 15 }}
-    multiline
-    onKeyDown={(e) => {
-        if (e.key === "Enter" && !e.shiftKey) {
-            StreamResponse(e)
-        }
-    }}
-    onChange={(e) => {
-        if (e.key !== "Enter" || e.shiftKey) {
-            setUserInput(e.target.value)
-        }
-    }}
-    value={userInput}
-    InputProps={{
-        endAdornment: (
-            <InputAdornment position="end">
-    <FormControl variant="standard" sx={{ minWidth: 120 }}>
-        {/* <InputLabel id="options-label">Options</InputLabel> */}
-        <Select
-            labelId="options-label"
-            id="options-select"
-            value={
-                respondWithChart
-                    ? 'chart'
-                    : googleSearch
-                    ? 'google'
-                    : searchContacts
-                    ? 'contacts'
-                    : crystalKnows
-                    ? 'crystal'
-                    : 'database'
-            }
-            onChange={(e) => {
-                const value = e.target.value;
-                setRespondWithChart(value === 'chart');
-                setGoogleSearch(value === 'google');
-                setCrystalKnows(value === 'crystal');
-                setSearchContacts(value === 'contacts');
-                
-                // If "database" is selected, set all to false
-                if (value === 'database') {
-                    setRespondWithChart(false);
-                    setGoogleSearch(false);
-                    setCrystalKnows(false);
-                    setSearchContacts(false);
-                }
-            }}
-        >
-            <MenuItem value="chart">Respond with Chart</MenuItem>
-            <MenuItem value="google">Google Search</MenuItem>
-            <MenuItem value="crystal">Crystal Knows</MenuItem>
-            <MenuItem value="database">Database Search</MenuItem>
-            <MenuItem value="contacts">Contact Search</MenuItem>
-        </Select>
-    </FormControl>
-    <Tooltip title="Send Message">
-        <SendIcon
-            sx={{ cursor: 'pointer', paddingLeft: '10px', paddingRight: '10px' }}
-            onClick={(e) => {
-                StreamResponse(e);
-            }}
-        />
-    </Tooltip>
-</InputAdornment>
-
-        ),
-    }}
-/>
+                </List>
+                <Box sx={{ paddingTop: '12px' }}>
+                    <TextField 
+                        ref={howCanIHelpRef} 
+                        id="standard-basic" 
+                        label="How can I help you today?" 
+                        variant="outlined"
+                        sx={{ 
+                            fontWeight: 400, 
+                            fontSize: 15,
+                            // reduce width and give side margins so horizontal spacing = bottom spacing
+                            width: 'calc(100% - 24px)',
+                            margin: '0 12px',
+                            '& .MuiOutlinedInput-root': {
+                                borderRadius: '50px'
+                            },
+                            // Match label and outline to left Menu item color (white-ish)
+                            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                borderColor: 'rgba(255,255,255,0.95)'
+                            },
+                            '& .MuiOutlinedInput-root fieldset': {
+                                borderColor: 'rgba(255,255,255,0.95)'
+                            },
+                            '& .MuiInputLabel-root': {
+                                color: 'rgba(255,255,255,0.95)'
+                            },
+                            '& .MuiInputLabel-root.Mui-focused': {
+                                color: 'rgba(255,255,255,0.95)'
+                            },
+                            '& .MuiInputBase-input': {
+                                color: 'rgba(255,255,255,0.95)'
+                            }
+                        }}
+                        multiline
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter" && !e.shiftKey) {
+                                StreamResponse(e)
+                            }
+                        }}
+                        onChange={(e) => {
+                            if (e.target && 'value' in e.target) {
+                                setUserInput((e.target as HTMLInputElement).value)
+                            }
+                        }}
+                        value={userInput}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <FormControl variant="standard" sx={{ minWidth: 120, '& .MuiInputBase-root': { color: 'rgba(255,255,255,0.95)' }, '& .MuiSelect-icon': { color: 'rgba(255,255,255,0.95)' }, '& .MuiInput-underline:before': { borderBottomColor: 'rgba(255,255,255,0.95)' }, '& .MuiInput-underline:after': { borderBottomColor: 'rgba(255,255,255,0.95)' } }}>
+                                        {/* <InputLabel id="options-label">Options</InputLabel> */}
+                                        <Select
+                                            labelId="options-label"
+                                            id="options-select"
+                                            value={
+                                                respondWithChart
+                                                    ? 'chart'
+                                                    : googleSearch
+                                                    ? 'google'
+                                                    : searchContacts
+                                                    ? 'contacts'
+                                                    : crystalKnows
+                                                    ? 'crystal'
+                                                    : 'database'
+                                            }
+                                            sx={{ color: 'rgba(255,255,255,0.95)', '& .MuiSelect-icon': { color: 'rgba(255,255,255,0.95)' } }}
+                                            onChange={(e) => {
+                                                const value = e.target.value;
+                                                setRespondWithChart(value === 'chart');
+                                                setGoogleSearch(value === 'google');
+                                                setCrystalKnows(value === 'crystal');
+                                                setSearchContacts(value === 'contacts');
+                                                
+                                                // If "database" is selected, set all to false
+                                                if (value === 'database') {
+                                                    setRespondWithChart(false);
+                                                    setGoogleSearch(false);
+                                                    setCrystalKnows(false);
+                                                    setSearchContacts(false);
+                                                }
+                                            }}
+                                        >
+                                                <MenuItem sx={{ color: 'rgba(255,255,255,0.95)' }} value="chart">Respond with Chart</MenuItem>
+                                                <MenuItem sx={{ color: 'rgba(255,255,255,0.95)' }} value="google">Google Search</MenuItem>
+                                                <MenuItem sx={{ color: 'rgba(255,255,255,0.95)' }} value="crystal">Crystal Knows</MenuItem>
+                                                <MenuItem sx={{ color: 'rgba(255,255,255,0.95)' }} value="database">Database Search</MenuItem>
+                                                <MenuItem sx={{ color: 'rgba(255,255,255,0.95)' }} value="contacts">Contact Search</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                    <Tooltip title="Send Message">
+                                        <SendIcon
+                                            sx={{ cursor: 'pointer', paddingLeft: '10px', paddingRight: '10px', color: 'white' }}
+                                            onClick={(e) => {
+                                                StreamResponse(e);
+                                            }}
+                                        />
+                                    </Tooltip>
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
+                </Box>
+            </Box>
 
             <Menu
                 id="menu-appbar"

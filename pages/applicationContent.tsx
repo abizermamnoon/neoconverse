@@ -5,12 +5,13 @@ import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 import type { NextPage } from "next";
 import { useEffect, useRef, useState } from "react";
+import dynamic from 'next/dynamic';
 
-import { Divider } from "@mui/material";
+import { Divider, List, ListItem, ListItemText, Typography } from "@mui/material";
 
 import { initAgents, getAgents, getAgentByKey } from '../agents/agentRegistry';
 import AgentList from '../components/agent/agentList';
-import Chat from '../components/chat/chat';
+const Chat = dynamic(() => import('../components/chat/chat'), { ssr: false });
 import { runNeoApi } from '../components/database/runNeoApi';
 import save_convo from './api/call_api';
 import { GenerateContent, ExecuteCypher, ExecuteGoogleSearch, ExecuteSearchContacts } from '../lib/middleware';
@@ -94,7 +95,7 @@ const ApplicationContent: NextPage = () => {
         name: "ai"
       },
       agent:"System",
-      avatar: '/frank.png',
+      avatar: '/frank_transparent.png',
       isChart: false,
       isSearch: false,
       isCrystalKnows: false,
@@ -234,7 +235,7 @@ const ApplicationContent: NextPage = () => {
                 text: message.finalResponse, // Use finalResponse as text
                 date: new Date(message.timestamp), // Convert timestamp to Date
                 agent: "ai", // Set agent to "ai"
-                avatar: "/frank.png",
+                avatar: "/frank_transparent.png",
                 author: {
                     name: "ai",
                      // Use currentDomainImage for AI
@@ -675,6 +676,15 @@ const ApplicationContent: NextPage = () => {
     }
   }
 
+  // Listen for header-triggered load event
+  useEffect(() => {
+    const handler = () => {
+      loadLogsIntoContext();
+    };
+    window.addEventListener('loadLogsIntoContext', handler as EventListener);
+    return () => window.removeEventListener('loadLogsIntoContext', handler as EventListener);
+  }, []);
+
   function getDomainFromEmail(email: string): string {
     // Split the email string into parts using "@" as the delimiter
     const parts = email.split("@");
@@ -708,37 +718,47 @@ const ApplicationContent: NextPage = () => {
     <div>
      <main >
       {/* <Divider light /> */}
-      <div ref={mainRef} style={{ height: 'calc(100vh - 70px)'}}>
-            <Grid container spacing={2} sx={{paddingTop:"0px"}}>
-                <Grid item xs={3} sx={{paddingTop: '0px', overflow: 'none'}}>
-                  <AgentList
-                    anchorElShowModel={anchorElShowModel} 
-                    handleListItemClick={handleListItemClick}
-                    initialContext={initialContext}
-                    refs={{
-                      bioRef,
-                      mainRef
-                    }}
-                    agents={agents}
-                    setAgents={setAgents}
-                    agentsAreLoading={agentsAreLoading}
-                    selectedAgentKey={selectedAgentKey}
-                    setAnchorElShowModel={setAnchorElShowModel}
-                    styleProps={{
-                      HeaderHeight
-                    }}
-                    setUserInput={setUserInput}
-                  />
-                </Grid>
-                <Grid item xs={9} sx={{paddingTop: '0px'}}>
-                    <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '8px 0' }}>
-                      <button
-                        onClick={() => loadLogsIntoContext()}
-                        style={{ padding: '6px 12px', borderRadius: 6, cursor: 'pointer' }}
-                      >
-                        Load Logs into Context
-                      </button>
-                    </div>
+      <div ref={mainRef} style={{ height: 'calc(100vh - 70px)', backgroundColor: '#606060', padding: '12px', boxSizing: 'border-box' }}>
+        <Grid container spacing={2} sx={{paddingTop:"0px", alignItems: 'stretch', height: '100%'}}>
+                <Grid item xs={3} sx={{paddingTop: '0px', display: 'flex', flexDirection: 'column', height: '100%'}}>
+                <Box sx={{
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: '12px',
+                  bgcolor: '#464646ff',
+                  border: '1px solid rgba(255,255,255,0.12)',
+                  boxSizing: 'border-box',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  overflow: 'hidden',
+                  padding: '8px'
+                }}>
+                  <Box sx={{
+                    width: '100%',
+                    padding: '6px 12px',
+                    borderBottom: '1px solid rgba(255,255,255,0.06)',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}>
+                    <Typography sx={{ color: 'rgba(255,255,255,0.95)', fontWeight: 700, fontSize: 18 }}>Menu</Typography>
+                  </Box>
+                  <List sx={{ width: '100%', flex: 1, bgcolor: 'transparent', overflowY: 'auto', padding: 0, margin: 0 }}>
+                    <ListItem button>
+                      <ListItemText primary={<Typography sx={{ color: 'rgba(255,255,255,0.95)', fontWeight: 400, fontSize: 15, fontFamily: 'sans-serif' }}>Talent Acquisition</Typography>} />
+                    </ListItem>
+                    <ListItem button>
+                      <ListItemText primary={<Typography sx={{ color: 'rgba(255,255,255,0.95)', fontWeight: 400, fontSize: 15, fontFamily: 'sans-serif' }}>Talent Insights</Typography>} />
+                    </ListItem>
+                    <ListItem button>
+                      <ListItemText primary={<Typography sx={{ color: 'rgba(255,255,255,0.95)', fontWeight: 400, fontSize: 15, fontFamily: 'sans-serif' }}>Knowledge Center</Typography>} />
+                    </ListItem>
+                    <ListItem button onClick={loadLogsIntoContext}>
+                      <ListItemText primary={<Typography sx={{ color: 'rgba(255,255,255,0.95)', fontWeight: 400, fontSize: 15, fontFamily: 'sans-serif' }}>Load Logs into Context</Typography>} />
+                    </ListItem>
+                  </List>
+                </Box>
+              </Grid>
+                <Grid item xs={9} sx={{paddingTop: '0px', display: 'flex', flexDirection: 'column', height: '100%'}}>
                   <Chat
                     dbSchemaImageUrl={dbSchemaImageUrl}
                     loading={loading}

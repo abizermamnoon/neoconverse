@@ -1,6 +1,5 @@
 import { OpenAIStream, OpenAIStreamPayload } from "../../utils/OpenAIStream";
 import { withApiAuthRequired, getAccessToken } from '@auth0/nextjs-auth0';
-import { Model } from "echarts";
 
 if (!process.env.OPENAI_API_KEY) {
   throw new Error("Missing env var from OpenAI");

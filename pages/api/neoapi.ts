@@ -15,12 +15,12 @@ export const config = {
 
 // this is to overcome runtime errors where it's looking for window
 //   without this you get: err:  [ReferenceError: window is not defined]
-if (global && typeof global.window === 'undefined') {
-  global.window = {};
+if (typeof globalThis !== 'undefined' && typeof (globalThis as any).window === 'undefined') {
+  (globalThis as any).window = {};
   // used in bolt-agent.js
-  global.window.navigator = {};
+  (globalThis as any).window.navigator = {};
   // we'll pretend that this is our browser
-  global.window.navigator.userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36';
+  (globalThis as any).window.navigator.userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36';
 }
 
 

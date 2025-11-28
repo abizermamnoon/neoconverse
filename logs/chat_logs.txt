@@ -1,0 +1,76 @@
+
+[2025-11-14T01:09:33.907Z]
+{
+  "userMessage": {
+    "conversation_id": "1763082557801",
+    "text": "plep",
+    "date": "2025-11-14T01:09:17.801Z",
+    "agent": "tbot",
+    "author": {
+      "name": "User"
+    },
+    "avatar": "/userProfile.jpeg",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "",
+    "chartData": {}
+  },
+  "aiMessage": {
+    "conversation_id": "1763082557801",
+    "text": "The response indicates that the system is specifically designed to generate queries based solely on the provided schema. This means that it operates within the constraints of a predefined structure and does not deviate from it.",
+    "date": "2025-11-14T01:09:17.801Z",
+    "agent": "tbot",
+    "author": {
+      "name": "ai"
+    },
+    "avatar": "/frank.png",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "RETURN \"I am designed to generate  queries based on the provided schema only.\"\nLIMIT 5",
+    "chartData": {}
+  },
+  "cypherQuery": "RETURN \"I am designed to generate  queries based on the provided schema only.\"\nLIMIT 5"
+}
+------------------------
+
+[2025-11-14T01:09:39.632Z]
+{
+  "userMessage": {
+    "conversation_id": "1763082567953",
+    "text": "plep",
+    "date": "2025-11-14T01:09:27.953Z",
+    "agent": "tbot",
+    "author": {
+      "name": "User"
+    },
+    "avatar": "/userProfile.jpeg",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "",
+    "chartData": {}
+  },
+  "aiMessage": {
+    "conversation_id": "1763082567953",
+    "text": "The response indicates that the system is specifically designed to generate queries based solely on the provided schema. This means that it operates within the constraints of a predefined structure and does not deviate from it.",
+    "date": "2025-11-14T01:09:27.953Z",
+    "agent": "tbot",
+    "author": {
+      "name": "ai"
+    },
+    "avatar": "/frank.png",
+    "isChart": false,
+    "isSearch": false,
+    "isCrystalKnows": false,
+    "isSearchContacts": false,
+    "cypher": "RETURN \"I am designed to generate  queries based on the provided schema only.\"\nLIMIT 5",
+    "chartData": {}
+  },
+  "cypherQuery": "RETURN \"I am designed to generate  queries based on the provided schema only.\"\nLIMIT 5"
+}
+------------------------

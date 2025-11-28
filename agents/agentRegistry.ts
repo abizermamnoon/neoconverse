@@ -3,32 +3,32 @@ import { runNeoApi } from '../components/database/runNeoApi';
 import RealEstatePromptProvider from './neo4j/realestate';
 import { loadLocalAgents, addAgent, removeAgent } from './localAgents';
 
-// export const FrontEndAgentQuery = `
-// MATCH (dbConnection:DBConnection)-[:DB_HAS_AGENT]->(agent:NeoAgent)
-// WHERE agent.isActive = true
-// RETURN { 
-//     key: agent.agent_name,
-//     title: agent.title,
-//     description: agent.description,
-//     icon: agent.icon,
-//     dataModelPath: agent.dataModelPath,
-//     order: agent.order,
-//     promptParts: {
-//         dataModel: head([(agent)-[:MODEL_PROMPT]->(model) | model.prompt ]), 
-//         fewshot: head([(agent)-[:FEWSHOT_PROMPT]->(fewshot) | fewshot.prompt ])
-//     }
-// } as agentInfo
-// ORDER BY agent.order
-// `;
+export const FrontEndAgentQuery = `
+MATCH (dbConnection:DBConnection)-[:DB_HAS_AGENT]->(agent:NeoAgent)
+WHERE agent.isActive = true
+RETURN { 
+    key: agent.agent_name,
+    title: agent.title,
+    description: agent.description,
+    icon: agent.icon,
+    dataModelPath: agent.dataModelPath,
+    order: agent.order,
+    promptParts: {
+        dataModel: head([(agent)-[:MODEL_PROMPT]->(model) | model.prompt ]), 
+        fewshot: head([(agent)-[:FEWSHOT_PROMPT]->(fewshot) | fewshot.prompt ])
+    }
+} as agentInfo
+ORDER BY agent.order
+`;
 
-// export const BackEndAgentQuery = `
-// MATCH (dbConnection:DBConnection)-[:DB_HAS_AGENT]->(agent:NeoAgent)
-// WHERE agent.isActive = true
-// RETURN { 
-//     key: agent.agent_name,
-//     databaseInfo: dbConnection {.*}
-// } as agentInfo
-// `;
+export const BackEndAgentQuery = `
+MATCH (dbConnection:DBConnection)-[:DB_HAS_AGENT]->(agent:NeoAgent)
+WHERE agent.isActive = true
+RETURN { 
+    key: agent.agent_name,
+    databaseInfo: dbConnection {.*}
+} as agentInfo
+`;
 
 const PredefinedPromptProviders = {
     RealEstate: new RealEstatePromptProvider()
@@ -97,7 +97,7 @@ const initialAgentData = {
         protocol: 'neo4j+s',
         username: 'neo4j'
     },
-    icon: '/frank.png',
+    icon: '/frank_transparent.png',
     userDefined: false,
     schemaDiagram: "",
     promptParts: {
