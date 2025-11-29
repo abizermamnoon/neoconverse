@@ -61,7 +61,7 @@ const ApplicationContent: NextPage = () => {
   const [searchContacts, setSearchContacts] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
   const [anchorElShowModel, setAnchorElShowModel] = React.useState<HTMLButtonElement | null>(null);
-  const [currentDomainImage, setCurrentDomainImage] = useState("/realtorchat.png");
+  const [currentDomainImage, setCurrentDomainImage] = useState("./realtorchat.png");
   const [openAIModel,setOpenAIModel] = useState('gpt-4');
   const [llmKey, setLLMKey] = useState();
   const [isUserDefinedAgent, setIsUserDefinedAgent] = useState();
@@ -486,7 +486,34 @@ const ApplicationContent: NextPage = () => {
         if(!respondWithChart){
             if(neoResponse?.result?.length ===0)
             {
-              prompt = prompts.GRACEFUL_MESSAGE_PROMPT;
+              const llmResponse = await GenerateContent(
+                  isUserDefined, 
+                  prompts.GRACEFUL_MESSAGE_PROMPT1(userInput, initialContext),
+                  true, 
+                  respondWithChart, 
+                  llmKey, 
+                  googleSearch, 
+                  crystalKnows, 
+                  searchContacts
+              );
+              console.log('llmResponse \n' , llmResponse);
+
+              // Build fallback query with explicit logic
+              query = llmResponse.toString().toLowerCase().includes('limit') 
+                  ? llmResponse.toString() 
+                  : llmResponse.toString().trim().replace(';', '') + '\nLIMIT 5';
+              
+              console.log('fallback query:', query);
+              var neoResponse:any = await ExecuteCypher(isUserDefined, false,  selectedAgentKey, query, {googleSearch, crystalKnows, searchContacts});
+              console.log('convert to human readable output');
+              
+              if(neoResponse?.result?.length ===0)
+              {
+                prompt = prompts.GRACEFUL_MESSAGE_PROMPT;
+              }
+              else{
+                prompt = prompts.HUMAN_READABLE_MESSAGE_PROMPT(userInput, JSON.stringify(neoResponse.result).trim())
+              }
             }
             else if(neoResponse?.result?.length > 500){
               prompt = prompts.GRACEFUL_HUGE_TEXT_PROMPT;

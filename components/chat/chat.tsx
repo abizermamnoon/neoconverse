@@ -155,6 +155,18 @@ const Chat = (props) => {
         }
     };
 
+    const FrankLabel = () => (
+    <Box sx={{ display: "flex", alignItems: "center" }}>
+        
+        <span>How can I help you today?</span>
+        <img
+            src="/frank.png"   // adjust path as needed
+            alt="Frank Logo"
+            style={{ width: 20, height: 20, marginRight: 8 }}
+        />
+    </Box>
+);
+
     return (
         <>
             <Stack style={{
@@ -321,7 +333,7 @@ const Chat = (props) => {
                 ref={howCanIHelpRef}
                 fullWidth
                 id="chat-input"
-                label="How can I help you today?"
+                label={<FrankLabel />}   // ← Insert logo + label here          
                 variant="outlined"
                 sx={{
                     fontWeight: 400,

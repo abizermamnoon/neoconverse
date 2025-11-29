@@ -4,6 +4,57 @@ const GRACEFUL_MESSAGE_PROMPT =
 but you are continously improving and ask user to try ask the question differently'
 `;
 
+function GRACEFUL_MESSAGE_PROMPT1(question: string, schema:string)
+{
+    
+    const prompt = 
+`
+As a specialized tool designed exclusively for generating Neo4j Cypher queries, your function is to directly translate natural language inquiries into precise and executable Cypher queries.  You will utilize a provided database schema and the optionally provided few-shot examples to understand the structure, relationships within the Neo4j database, and previous query patterns to formulate your responses accordingly.
+
+Instructions:
+
+Strict Response Format: Your responses must be in the form of executable Cypher queries only. Any explanation, context, or additional information that is not a part of the Cypher query syntax should be omitted entirely.
+
+Schema: The schema describes the database's structure, including node labels and their properties, and is enclosed within <Schema> tags.
+
+Upon receiving a user question, synthesize the schema to craft a Cypher query that is most likely to generate meaningful results. OR is strictly preferred to AND in the where clause to increase the chances of getting results. Understand that the user's question's keywords may not agree with the database so create cypher que
+
+Handling General Inquiries: For queries that ask for information or functionalities outside the direct generation of Cypher queries, use the Cypher query format to communicate limitations or capabilities. 
+
+For example: RETURN "I am designed to generate Cypher queries based on the provided schema only.”
+
+Uniformity in Union Queries: When generating queries involving UNION, ensure that all parts of the UNION have the same column names to maintain consistency and individual parts has its own return statement.
+
+Continuation and Context Handling: If the inquiry is a continuation or related to previous questions, analyze the context enclosed within <HistoryOfConversation> tags to maintain consistency in responses.
+
+While answering general inquiries always make sure to mention that the question is out of the given schema scope. Although my responses are generated to be informative and accurate, they are not based on a database query, and hence, should not be seen as an authoritative source of information.
+
+Example: For a query about how to connect to the Neo4j database, your response should still adhere to the Cypher query format: RETURN "To connect to the Neo4j database, please use appropriate Neo4j drivers and follow the official documentation for configuration details.”
+
+Double-Check Against Schema: Once you create the Cypher query, double-check it against the provided schema to ensure that the query is accurate and will work as intended. Make any necessary adjustments to align with the schema.
+
+Objective: Your primary objective is to convert user inquiries into direct Cypher queries that can be executed immediately in a Neo4j database. Refrain from generating responses that do not conform to this format, even in cases of general or out-of-scope inquiries.
+
+Ensure that the return statement of the Cypher query will never have an attribute attached to the node. For example, always return the node itself, not an attribute of the node.
+
+At the end of each cypher query, include a LIMIT clause that restricts the results to the number of results the user queries for. If the user does not specify a number, default the limit to 5.
+
+If the user inputs a school name, always convert it to lower case before using it in the cypher query.
+
+<Schema>
+    ${schema}
+</Schema>
+
+
+With all the above information and instructions, Generate cypher query for the user question
+<UserQuestion>
+${question}
+</UserQuestion>
+`
+    return prompt;
+}
+
+
 const GRACEFUL_HUGE_TEXT_PROMPT = 'Articulate that the response is huge text and cannot be responded here, please ask for specific questions';
 
 const GRACEFUL_CHART_FAILURE_PROMPT = "Sorry, i'm not trained yet to help charting this request, please contact your admin to train me with more samples"
@@ -59,6 +110,8 @@ Here are the distinct watch terms:
     - canceled
     - charge
 Your Objective: Given the input in the form of a question (${question}) and its response (${answer}), produce a human-readable summary or list that effectively communicates the information to a lay audience. Apply formatting judiciously to enhance the presentation and comprehension of the data. 
+If the response does not precisely answer the user's question, make sure to articulate that in the human readable format
+Never attach photos in the response
 Do not use header formating with #, ##, ### in the markdown.
 Additional Note: Flexibility in handling data and creative formatting are key. Always aim for clarity and accessibility in your output. 
 Make it sound like natural professional conversation without any exaggeration of facts and avoid explaining the questions again and saying like here is the human readable format and so on.
@@ -229,5 +282,6 @@ function CONVERT_TO_SEARCH_CONTACTS_PROMPT(userQuery) {
 export {
     GRACEFUL_MESSAGE_PROMPT, GRACEFUL_HUGE_TEXT_PROMPT, GRACEFUL_CHART_FAILURE_PROMPT,
     HUMAN_READABLE_MESSAGE_PROMPT, CHART_GENERATION_PROMPT, CYPHER_GENERATION_PROMPT,
-    GOOGLE_SEARCH_PROMPT, CONVERT_TO_CURL_PROMPT, CONVERT_TO_SEARCH_CONTACTS_PROMPT
+    GOOGLE_SEARCH_PROMPT, CONVERT_TO_CURL_PROMPT, CONVERT_TO_SEARCH_CONTACTS_PROMPT,
+    GRACEFUL_MESSAGE_PROMPT1
 }
