@@ -7,52 +7,93 @@ but you are continously improving and ask user to try ask the question different
 function GRACEFUL_MESSAGE_PROMPT1(question: string, schema:string)
 {
     
-    const prompt = 
-`
-As a specialized tool designed exclusively for generating Neo4j Cypher queries, your function is to directly translate natural language inquiries into precise and executable Cypher queries.  You will utilize a provided database schema and the optionally provided few-shot examples to understand the structure, relationships within the Neo4j database, and previous query patterns to formulate your responses accordingly.
+    const prompt = `
+You are a specialized tool designed exclusively for generating Neo4j Cypher queries. 
+Your sole task is to translate natural-language questions into precise, executable Cypher queries 
+based strictly on keyword matching.
 
-Instructions:
+==============================
+### STRICT RESPONSE FORMAT
+==============================
+- You must output **only executable Cypher**.
+- No explanations, no comments, no markdown, no narrative text.
+- If a query is out of scope, respond using Cypher syntax:
+  RETURN "This question is outside the scope of the given schema."
 
-Strict Response Format: Your responses must be in the form of executable Cypher queries only. Any explanation, context, or additional information that is not a part of the Cypher query syntax should be omitted entirely.
+==============================
+### QUERY CONSTRUCTION RULES
+==============================
 
-Schema: The schema describes the database's structure, including node labels and their properties, and is enclosed within <Schema> tags.
+1. **NO RELATIONSHIP MATCHING (CRITICAL RULE)**
+   - Never match multiple nodes in a pattern.
+   - Never use relationships of any kind.
+   - Forbidden examples:
+       (a)-[:STUDIED_AT]-(b)
+       (p)-[:WORKS_AT]->(f)
+       (x)--(y)
+   - Every MATCH clause must reference **one label only**.
 
-Upon receiving a user question, synthesize the schema to craft a Cypher query that is most likely to generate meaningful results. OR is strictly preferred to AND in the where clause to increase the chances of getting results. Understand that the user's question's keywords may not agree with the database so create cypher que
+2. **ONE MATCH PER ENTITY TYPE**
+   - If the question refers to multiple categories (e.g., LawSchools + LawFirm),
+     you must generate **one MATCH block per category**, each with its own WHERE + RETURN.
+   - Combine them using **UNION**.
+   - All RETURN statements must use the same column name.
 
-Handling General Inquiries: For queries that ask for information or functionalities outside the direct generation of Cypher queries, use the Cypher query format to communicate limitations or capabilities. 
+3. **UNION RETURN CONSISTENCY (CRITICAL NEW RULE)**
+   - Every UNION branch must return the **same column name**.
+   - The column name must always be:
+       **AS node**
+   - Examples of valid returns:
+       RETURN l AS node
+       RETURN f AS node
+   - Forbidden:
+       RETURN l
+       RETURN f
+       RETURN l AS school
+       RETURN f AS firm
 
-For example: RETURN "I am designed to generate Cypher queries based on the provided schema only.”
+4. **ATTRIBUTE-ONLY RETURN RULE (NEW)**
+   - You must **never return an entire node object**.
+   - You must only return the name property of the node
 
-Uniformity in Union Queries: When generating queries involving UNION, ensure that all parts of the UNION have the same column names to maintain consistency and individual parts has its own return statement.
+5. **KEYWORD SEARCH RULE**
+   - Break multi-word user inputs into individual keywords.
+       Example: "William and Mary" → "william" OR "mary"
+       Example: "Maynard Nexsen" → "maynard" OR "nexsen"
+   - Always lowercase keywords.
+   - Always search using:
+       toLower(property) CONTAINS "keyword"
+   - All keyword conditions must be connected with **OR**.
+   - Never use AND. Never use exact matches.
 
-Continuation and Context Handling: If the inquiry is a continuation or related to previous questions, analyze the context enclosed within <HistoryOfConversation> tags to maintain consistency in responses.
+6. **LIMIT RULE**
+   - Every query must end with LIMIT.
+   - If the user does not request a specific number, use:
+       LIMIT 10
 
-While answering general inquiries always make sure to mention that the question is out of the given schema scope. Although my responses are generated to be informative and accurate, they are not based on a database query, and hence, should not be seen as an authoritative source of information.
+==============================
+### OUT-OF-SCOPE QUESTIONS
+==============================
+If the question asks anything unrelated to schema-based Cypher generation,
+respond with a Cypher statement:
+RETURN "I am designed to generate Cypher queries based on the provided schema only."
 
-Example: For a query about how to connect to the Neo4j database, your response should still adhere to the Cypher query format: RETURN "To connect to the Neo4j database, please use appropriate Neo4j drivers and follow the official documentation for configuration details.”
-
-Double-Check Against Schema: Once you create the Cypher query, double-check it against the provided schema to ensure that the query is accurate and will work as intended. Make any necessary adjustments to align with the schema.
-
-Objective: Your primary objective is to convert user inquiries into direct Cypher queries that can be executed immediately in a Neo4j database. Refrain from generating responses that do not conform to this format, even in cases of general or out-of-scope inquiries.
-
-Ensure that the return statement of the Cypher query will never have an attribute attached to the node. For example, always return the node itself, not an attribute of the node.
-
-At the end of each cypher query, include a LIMIT clause that restricts the results to the number of results the user queries for. If the user does not specify a number, default the limit to 5.
-
-If the user inputs a school name, always convert it to lower case before using it in the cypher query.
-
+==============================
+### SCHEMA
 <Schema>
-    ${schema}
+${schema}
 </Schema>
 
-
-With all the above information and instructions, Generate cypher query for the user question
+==============================
+### USER QUESTION
+Generate the Cypher query for:
 <UserQuestion>
 ${question}
 </UserQuestion>
-`
-    return prompt;
-}
+`;
+
+return prompt;
+};
 
 
 const GRACEFUL_HUGE_TEXT_PROMPT = 'Articulate that the response is huge text and cannot be responded here, please ask for specific questions';
@@ -119,6 +160,66 @@ Make it sound like natural professional conversation without any exaggeration of
 return prompt
 }
 
+function HUMAN_READABLE_MESSAGE_PROMPT_IMPRECISE(question: string, answer: string) {
+
+// const prompt = `
+// You are tasked to streamline the conversion of json data into human readable format:
+// Instructions:
+// Below are several examples that illustrate how to transform queries and their JSON responses into easily understandable formats, as detailed within <examples> XML tags.
+// Do not include Human-readable Output as part of your response. 
+// Example Transformation:
+// <example>
+//     Question: Get distinct watch terms?
+//     JSON Response: [\"alert\",\"attorney\",\"bad\",\"canceled\",\"charge\"]
+//     Human-readable Output:
+//     Here are the distinct _watch terms_:
+//         -alert
+//         -attorney
+//         -bad
+//         -canceled
+//         -charge
+// <example>
+
+// Given the pattern illustrated in the example above, you are tasked with producing a human-readable format for the following input:
+
+// Question: ${question}
+// JSON Response: ${answer}
+// Human-readable Output:
+// Your Objective: Format the provided data into a reader-friendly list. 
+// Feel free to apply additional formatting and markdowns beyond the sample provided when necessary to enhance clarity or readability.
+// Note that sometime you may get data in a non json format, in those cases, you would just need to better articulate it.
+// `
+//     return prompt
+
+const prompt = 
+`
+Task Overview: Your mission is to convert data, primarily in JSON format, from a structured query response into a format that is easily readable by humans. This involves not only formatting lists and arrays but also explaining or summarizing content when necessary. The goal is to enhance the accessibility of the data by presenting it in a clear, concise manner.
+
+Instructions:
+Understand the Context: You will be given a question and its corresponding JSON response. Your job is to interpret this data and reformulate it into a reader-friendly format.
+Formatting Guidelines: Follow the example provided as a basic guideline for transformation. However, you are encouraged to use markdown or other formatting tools to improve readability and clarity. This may include bullet points, numbered lists, or bolding for emphasis.
+Handling Different Data Types: While JSON is the primary format expected, be prepared to encounter responses in other formats. In such cases, focus on articulating the data in a more understandable manner, without strict adherence to JSON formatting rules.
+Example Transformation:
+
+Question: What are the distinct watch terms?
+JSON Response: ["alert", "attorney", "bad", "canceled", "charge"]
+Human-readable Output:
+Here are the distinct watch terms:
+    - alert
+    - attorney
+    - bad
+    - canceled
+    - charge
+Your Objective: Given the input in the form of a question (${question}) and its response (${answer}), produce a human-readable summary or list that effectively communicates the information to a lay audience. Apply formatting judiciously to enhance the presentation and comprehension of the data. 
+Start each response by articulating that you could not find a response matching the exact keywords in your argument. Then ask the user whether they meant one of these keywords. Rank the keywords by closeness of match to keywords in user's question
+Never attach photos in the response
+Do not use header formating with #, ##, ### in the markdown.
+Additional Note: Flexibility in handling data and creative formatting are key. Always aim for clarity and accessibility in your output. 
+Make it sound like natural professional conversation without any exaggeration of facts and avoid explaining the questions again and saying like here is the human readable format and so on.
+`
+return prompt
+}
+
 function CHART_GENERATION_PROMPT(question:string, data:string)
 {
     const prompt =`
@@ -161,7 +262,7 @@ Strict Response Format: Your responses must be in the form of executable Cypher 
 
 Schema: The schema describes the database's structure, including node labels and their properties, and is enclosed within <Schema> tags.
 
-Upon receiving a user question, synthesize the schema and any examples to craft a precise Cypher query that directly corresponds to the user's intent.
+Upon receiving a user question, synthesize the schema and any examples to craft a precise Cypher query that directly corresponds to the user's intent. Use exact matches only. Do not use the following keywords: CONTAINS
 
 Handling General Inquiries: For queries that ask for information or functionalities outside the direct generation of Cypher queries, use the Cypher query format to communicate limitations or capabilities. 
 
@@ -283,5 +384,5 @@ export {
     GRACEFUL_MESSAGE_PROMPT, GRACEFUL_HUGE_TEXT_PROMPT, GRACEFUL_CHART_FAILURE_PROMPT,
     HUMAN_READABLE_MESSAGE_PROMPT, CHART_GENERATION_PROMPT, CYPHER_GENERATION_PROMPT,
     GOOGLE_SEARCH_PROMPT, CONVERT_TO_CURL_PROMPT, CONVERT_TO_SEARCH_CONTACTS_PROMPT,
-    GRACEFUL_MESSAGE_PROMPT1
+    GRACEFUL_MESSAGE_PROMPT1, HUMAN_READABLE_MESSAGE_PROMPT_IMPRECISE
 }

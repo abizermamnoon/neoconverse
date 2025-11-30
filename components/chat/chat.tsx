@@ -88,7 +88,7 @@ const Chat = (props) => {
     const [feedbackMap, setFeedbackMap] = useState<{ [key: number]: 'good' | 'bad' | null }>({});
     const user = {
         name: 'abizer',
-        email: 'abizer@example.com' // Adjust the email as needed
+        email: 'abizer@talentengines.ai' // Adjust the email as needed
     };
 
     useEffect(() => {
