@@ -54,7 +54,7 @@ based strictly on keyword matching.
 
 4. **ATTRIBUTE-ONLY RETURN RULE (NEW)**
    - You must **never return an entire node object**.
-   - You must only return the name property of the node
+   - You must only return the name property of the node unless it is attorney's name. If it is attorney's name, return both first and last name.
 
 5. **KEYWORD SEARCH RULE**
    - Break multi-word user inputs into individual keywords.
