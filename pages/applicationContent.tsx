@@ -659,31 +659,7 @@ const ApplicationContent: NextPage = () => {
       }
   };
 
-  // Load logs from server (S3 or local) and set as context
-  const loadLogsIntoContext = async () => {
-    try {
-      const resp = await fetch('/api/getLogs');
-      if (!resp.ok) {
-        console.error('Failed to fetch logs:', resp.statusText);
-        return;
-      }
-      const json = await resp.json();
-      const content = json.content || '';
-      console.log('Loaded logs from', json.source || 'unknown', content);
-      setContext(content);
-    } catch (err) {
-      console.error('Error loading logs:', err);
-    }
-  }
-
-  // Listen for header-triggered load event
-  useEffect(() => {
-    const handler = () => {
-      loadLogsIntoContext();
-    };
-    window.addEventListener('loadLogsIntoContext', handler as EventListener);
-    return () => window.removeEventListener('loadLogsIntoContext', handler as EventListener);
-  }, []);
+  {/* Load logs functionality removed (moved/removed) */}
 
   function getDomainFromEmail(email: string): string {
     // Split the email string into parts using "@" as the delimiter
@@ -752,9 +728,7 @@ const ApplicationContent: NextPage = () => {
                     <ListItem button>
                       <ListItemText primary={<Typography sx={{ color: 'rgba(255,255,255,0.95)', fontWeight: 400, fontSize: 15, fontFamily: 'sans-serif' }}>Knowledge Center</Typography>} />
                     </ListItem>
-                    <ListItem button onClick={loadLogsIntoContext}>
-                      <ListItemText primary={<Typography sx={{ color: 'rgba(255,255,255,0.95)', fontWeight: 400, fontSize: 15, fontFamily: 'sans-serif' }}>Load Logs into Context</Typography>} />
-                    </ListItem>
+                    {/* Load Logs menu item removed */}
                   </List>
                 </Box>
               </Grid>
