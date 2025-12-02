@@ -1,10 +1,19 @@
 
+<<<<<<< HEAD
 [2025-11-14T01:09:33.907Z]
 {
   "userMessage": {
     "conversation_id": "1763082557801",
     "text": "plep",
     "date": "2025-11-14T01:09:17.801Z",
+=======
+[2025-11-21T13:28:44.147Z]
+{
+  "userMessage": {
+    "conversation_id": "1763731714613",
+    "text": "what percent of attorneys at DLA Piper have honors?",
+    "date": "2025-11-21T13:28:34.613Z",
+>>>>>>> 79fd41d90b89aeea198dc5c23065a37325320ba4
     "agent": "tbot",
     "author": {
       "name": "User"
@@ -18,9 +27,15 @@
     "chartData": {}
   },
   "aiMessage": {
+<<<<<<< HEAD
     "conversation_id": "1763082557801",
     "text": "The response indicates that the system is specifically designed to generate queries based solely on the provided schema. This means that it operates within the constraints of a predefined structure and does not deviate from it.",
     "date": "2025-11-14T01:09:17.801Z",
+=======
+    "conversation_id": "1763731714613",
+    "text": "At DLA Piper, approximately 21.32% of attorneys have received honors.",
+    "date": "2025-11-21T13:28:34.613Z",
+>>>>>>> 79fd41d90b89aeea198dc5c23065a37325320ba4
     "agent": "tbot",
     "author": {
       "name": "ai"
@@ -30,6 +45,7 @@
     "isSearch": false,
     "isCrystalKnows": false,
     "isSearchContacts": false,
+<<<<<<< HEAD
     "cypher": "RETURN \"I am designed to generate  queries based on the provided schema only.\"\nLIMIT 5",
     "chartData": {}
   },
@@ -43,6 +59,21 @@
     "conversation_id": "1763082567953",
     "text": "plep",
     "date": "2025-11-14T01:09:27.953Z",
+=======
+    "cypher": "MATCH (a:attorneys)-[:WORKS_AT]-(f:LawFirm {firm_name: \"DLA Piper\"})\nOPTIONAL MATCH (a)-[:HAS]-(h:Honors)\nWITH COUNT(a) AS totalAttorneys, COUNT(h) AS honoredAttorneys\nRETURN (toFloat(honoredAttorneys) / totalAttorneys) * 100 AS percentHonored\nLIMIT 5",
+    "chartData": {}
+  },
+  "cypherQuery": "MATCH (a:attorneys)-[:WORKS_AT]-(f:LawFirm {firm_name: \"DLA Piper\"})\nOPTIONAL MATCH (a)-[:HAS]-(h:Honors)\nWITH COUNT(a) AS totalAttorneys, COUNT(h) AS honoredAttorneys\nRETURN (toFloat(honoredAttorneys) / totalAttorneys) * 100 AS percentHonored\nLIMIT 5"
+}
+------------------------
+
+[2025-11-26T20:28:32.438Z]
+{
+  "userMessage": {
+    "conversation_id": "1764188898598",
+    "text": "what law firm does Gwendolyn Hicks work at",
+    "date": "2025-11-26T20:28:18.598Z",
+>>>>>>> 79fd41d90b89aeea198dc5c23065a37325320ba4
     "agent": "tbot",
     "author": {
       "name": "User"
@@ -56,9 +87,15 @@
     "chartData": {}
   },
   "aiMessage": {
+<<<<<<< HEAD
     "conversation_id": "1763082567953",
     "text": "The response indicates that the system is specifically designed to generate queries based solely on the provided schema. This means that it operates within the constraints of a predefined structure and does not deviate from it.",
     "date": "2025-11-14T01:09:27.953Z",
+=======
+    "conversation_id": "1764188898598",
+    "text": "Gwendolyn Hicks is associated with the law firm Winston Strawn, which is based in Chicago, IL. Here are some key details about the firm:\n\n- **Firm Name:** Winston Strawn\n- **Location:** Chicago, IL\n- **Total Headcount:** 889\n- **Total Offices:** 14\n- **Global Rank:** 54\n- **Am Law 200 Rank:** 44\n- **NLJ 500 Rank:** 61\n- **Global 200 Rank:** 54\n- **Total Revenue:** $1,190,728,000\n- **Revenue Per Lawyer:** $1,340,000\n- **Profit Per Equity Partner:** $3,218,000\n- **Equity Partners:** 116\n- **Non-Equity Partners:** 224\n- **Associates:** 432\n\nThe firm has expertise in various practice areas, including:\n\n- **Corporate:** Present in NY, CA, TX, FL, and IL\n- **Litigation:** Active in DC, CA, NY, TX, FL, NC, and IL\n- **Intellectual Property:** Present in CA, TX, and IL\n- **Banking:** Active in FL and IL\n- **Real Estate:** Present in TX and IL\n- **Labor & Employment:** Present in CA and IL\n- **Erisa-C&B:** Active in DC and IL\n- **Tax:** Present in IL\n- **Bankruptcy:** Active in NY\n- **Environment:** Present in IL\n- **Energy:** Present in Winston Strawn\n- **Transportation:** Present in Winston Strawn\n- **Healthcare:** Present in Winston Strawn\n- **Trusts & Estates:** Present in Winston Strawn\n- **General Practice:** Present in Winston Strawn\n- **Government:** Present in Winston Strawn\n- **Education:** Present in Winston Strawn\n- **Admin:** Present in Winston Strawn\n- **Technology:** Present in Winston Strawn\n\nThe firm is recognized for its strong presence in various legal sectors and has a significant global footprint.",
+    "date": "2025-11-26T20:28:18.598Z",
+>>>>>>> 79fd41d90b89aeea198dc5c23065a37325320ba4
     "agent": "tbot",
     "author": {
       "name": "ai"
@@ -68,9 +105,118 @@
     "isSearch": false,
     "isCrystalKnows": false,
     "isSearchContacts": false,
+<<<<<<< HEAD
     "cypher": "RETURN \"I am designed to generate  queries based on the provided schema only.\"\nLIMIT 5",
     "chartData": {}
   },
   "cypherQuery": "RETURN \"I am designed to generate  queries based on the provided schema only.\"\nLIMIT 5"
+=======
+    "cypher": "\nMATCH (a:attorneys {firstName: \"Gwendolyn\", lastName: \"Hicks\"})-[:WORKS_AT]-(f:LawFirm)\nRETURN f\nLIMIT 1\n",
+    "chartData": {}
+  },
+  "cypherQuery": "\nMATCH (a:attorneys {firstName: \"Gwendolyn\", lastName: \"Hicks\"})-[:WORKS_AT]-(f:LawFirm)\nRETURN f\nLIMIT 1\n"
+}
+------------------------
+
+[2025-11-26T20:40:47.764Z]
+{
+  "userMessage": "what law firm does Gwendolyn Hicks work at",
+  "cypherQuery": "\nMATCH (a:attorneys {firstName: \"Gwendolyn\", lastName: \"Hicks\"})-[:WORKS_AT]-(f:LawFirm)\nRETURN f\nLIMIT 1\n"
+}
+------------------------
+
+[2025-11-26T20:40:47.776Z]
+{
+  "feedback": "good",
+  "userMessage": "Gwendolyn Hicks works at the law firm Winston Strawn, located in Chicago, IL. Here are some key details about the firm:\n\n- **Firm Name:** Winston Strawn\n- **Location:** Chicago, IL\n- **Total Headcount:** 889\n- **Total Offices:** 14\n- **Global Rank:** 54\n- **Am Law 200 Rank:** 44\n- **NLJ 500 Rank:** 61\n- **Global 200 Rank:** 54\n- **Total Revenue:** $1,190,728,000\n- **Revenue Per Lawyer:** $1,340,000\n- **Profit Per Equity Partner:** $3,218,000\n- **Equity Partners:** 116\n- **Non-Equity Partners:** 224\n- **Associates:** 432\n\nThe firm has expertise in various practice areas, including:\n\n- **Corporate:** Present in NY, IL, CA, TX, FL\n- **Litigation:** Present in DC, CA, NY, TX, FL, NC, IL\n- **Intellectual Property:** Present in IL, CA, TX\n- **Banking:** Present in IL, FL\n- **Real Estate:** Present in IL, TX\n- **Labor & Employment:** Present in IL, CA\n- **Erisa-C&B:** Present in DC, IL\n- **Tax:** Present in IL\n- **Bankruptcy:** Active\n- **Healthcare:** Expertise level 3\n- **Environment:** Expertise level 3\n- **Trusts & Estates:** Expertise level 3\n- **Transportation:** Expertise level 2\n- **Energy:** Expertise level 2\n- **Technology:** Expertise level 2\n- **General Practice:** Expertise level 2\n- **Government:** Expertise level 2\n- **Admin:** Expertise level 2\n- **Education:** Expertise level 2\n\nWinston Strawn is recognized for its strong performance across various legal sectors and maintains a significant presence in the legal industry.",
+  "messageIndex": 6,
+  "timestamp": "2025-11-26T20:40:47.333Z"
+}
+------------------------
+
+[2025-11-26T20:43:01.546Z]
+{
+  "userMessage": "what law firm does Gwendolyn Hicks work at?",
+  "cypherQuery": "\nMATCH (a:attorneys {firstName: \"Gwendolyn\", lastName: \"Hicks\"})-[:WORKS_AT]-(f:LawFirm)\nRETURN f\nLIMIT 1\n"
+}
+------------------------
+
+[2025-11-26T20:43:06.024Z]
+{
+  "feedback": "good",
+  "userMessage": "Gwendolyn Hicks works at the law firm Winston Strawn, which is based in Chicago, IL. Here are some key details about the firm:\n\n- **Total Headcount**: 889 employees\n- **Total Offices**: 14 locations\n- **Global Rank**: 54th in the Global 200\n- **Am Law 200 Rank**: 44th\n- **NLJ 500 Rank**: 61st\n- **Total Revenue**: $1,190,728,000\n- **Revenue Per Lawyer**: $1,340,000\n- **Profit Per Equity Partner**: $3,218,000\n- **Equity Partners**: 116\n- **Non-Equity Partners**: 224\n- **Associates**: 432\n\nThe firm has expertise in various practice areas, including:\n\n- **Corporate**: Strong presence in NY, CA, TX, FL, and IL\n- **Litigation**: Active in NY, CA, TX, FL, IL, and NC\n- **Intellectual Property**: Notable in CA, TX, and IL\n- **Banking**: Recognized in IL and FL\n- **Real Estate**: Active in TX\n- **Labor & Employment**: Present in CA and IL\n- **Erisa-C&B**: Strong in DC and IL\n- **Tax**: Expertise in IL\n- **Bankruptcy**: Active in NY\n- **Environment**: Notable in IL\n- **Healthcare**: Expertise in this area\n- **Trusts & Estates**: Recognized practice\n- **General Practice**: Broad coverage\n- **Transportation**: Active in this sector\n- **Energy**: Expertise in this field\n- **Government**: Involvement in this area\n- **Technology**: Active in this sector\n\nWinston Strawn is a well-rounded firm with a diverse range of practice areas and a strong presence in key markets.",
+  "messageIndex": 3,
+  "timestamp": "2025-11-26T20:43:06.011Z"
+}
+------------------------
+
+[2025-11-26T20:43:06.733Z]
+{
+  "feedback": "good",
+  "userMessage": "Gwendolyn Hicks works at the law firm Winston Strawn, which is based in Chicago, IL. Here are some key details about the firm:\n\n- **Total Headcount**: 889 employees\n- **Total Offices**: 14 locations\n- **Global Rank**: 54th in the Global 200\n- **Am Law 200 Rank**: 44th\n- **NLJ 500 Rank**: 61st\n- **Total Revenue**: $1,190,728,000\n- **Revenue Per Lawyer**: $1,340,000\n- **Profit Per Equity Partner**: $3,218,000\n- **Equity Partners**: 116\n- **Non-Equity Partners**: 224\n- **Associates**: 432\n\nThe firm has expertise in various practice areas, including:\n\n- **Corporate**: Strong presence in NY, CA, TX, FL, and IL\n- **Litigation**: Active in NY, CA, TX, FL, IL, and NC\n- **Intellectual Property**: Notable in CA, TX, and IL\n- **Banking**: Recognized in IL and FL\n- **Real Estate**: Active in TX\n- **Labor & Employment**: Present in CA and IL\n- **Erisa-C&B**: Strong in DC and IL\n- **Tax**: Expertise in IL\n- **Bankruptcy**: Active in NY\n- **Environment**: Notable in IL\n- **Healthcare**: Expertise in this area\n- **Trusts & Estates**: Recognized practice\n- **General Practice**: Broad coverage\n- **Transportation**: Active in this sector\n- **Energy**: Expertise in this field\n- **Government**: Involvement in this area\n- **Technology**: Active in this sector\n\nWinston Strawn is a well-rounded firm with a diverse range of practice areas and a strong presence in key markets.",
+  "messageIndex": 3,
+  "timestamp": "2025-11-26T20:43:06.707Z"
+}
+------------------------
+
+[2025-11-26T20:43:06.989Z]
+{
+  "feedback": "good",
+  "userMessage": "Gwendolyn Hicks works at the law firm Winston Strawn, which is based in Chicago, IL. Here are some key details about the firm:\n\n- **Total Headcount**: 889 employees\n- **Total Offices**: 14 locations\n- **Global Rank**: 54th in the Global 200\n- **Am Law 200 Rank**: 44th\n- **NLJ 500 Rank**: 61st\n- **Total Revenue**: $1,190,728,000\n- **Revenue Per Lawyer**: $1,340,000\n- **Profit Per Equity Partner**: $3,218,000\n- **Equity Partners**: 116\n- **Non-Equity Partners**: 224\n- **Associates**: 432\n\nThe firm has expertise in various practice areas, including:\n\n- **Corporate**: Strong presence in NY, CA, TX, FL, and IL\n- **Litigation**: Active in NY, CA, TX, FL, IL, and NC\n- **Intellectual Property**: Notable in CA, TX, and IL\n- **Banking**: Recognized in IL and FL\n- **Real Estate**: Active in TX\n- **Labor & Employment**: Present in CA and IL\n- **Erisa-C&B**: Strong in DC and IL\n- **Tax**: Expertise in IL\n- **Bankruptcy**: Active in NY\n- **Environment**: Notable in IL\n- **Healthcare**: Expertise in this area\n- **Trusts & Estates**: Recognized practice\n- **General Practice**: Broad coverage\n- **Transportation**: Active in this sector\n- **Energy**: Expertise in this field\n- **Government**: Involvement in this area\n- **Technology**: Active in this sector\n\nWinston Strawn is a well-rounded firm with a diverse range of practice areas and a strong presence in key markets.",
+  "messageIndex": 3,
+  "timestamp": "2025-11-26T20:43:06.947Z"
+}
+------------------------
+
+[2025-11-26T20:45:39.733Z]
+{
+  "userMessage": "what law firm does Gwendolyn Hicks work at?",
+  "cypherQuery": "\nMATCH (a:attorneys {firstName: \"Gwendolyn\", lastName: \"Hicks\"})-[:WORKS_AT]-(f:LawFirm)\nRETURN f\nLIMIT 1\n"
+}
+------------------------
+
+[2025-11-26T20:45:51.235Z]
+{
+  "userInput": "what law firm does Gwendolyn Hicks work at?",
+  "cypher": "\nMATCH (a:attorneys {firstName: \"Gwendolyn\", lastName: \"Hicks\"})-[:WORKS_AT]-(f:LawFirm)\nRETURN f\nLIMIT 1\n",
+  "feedback": "good"
+}
+------------------------
+
+[2025-11-26T20:47:55.488Z]
+{
+  "userInput": "what law firm does Gwendolyn Hicks work at?",
+  "cypher": "\nMATCH (a:attorneys {firstName: \"Gwendolyn\", lastName: \"Hicks\"})-[:WORKS_AT]-(f:LawFirm)\nRETURN f\nLIMIT 1\n",
+  "feedback": "good"
+}
+------------------------
+
+[2025-11-26T20:54:05.058Z]
+{
+  "userMessage": "what law firm does Gwendolyn Hicks work at",
+  "cypherQuery": "\nMATCH (a:attorneys {firstName: \"Gwendolyn\", lastName: \"Hicks\"})-[:WORKS_AT]-(f:LawFirm)\nRETURN f\nLIMIT 1\n"
+}
+------------------------
+
+[2025-11-26T20:54:09.822Z]
+{
+  "userInput": "what law firm does Gwendolyn Hicks work at",
+  "cypher": "\nMATCH (a:attorneys {firstName: \"Gwendolyn\", lastName: \"Hicks\"})-[:WORKS_AT]-(f:LawFirm)\nRETURN f\nLIMIT 1\n",
+  "feedback": "good"
+}
+------------------------
+
+[2025-11-26T21:13:10.937Z]
+{
+  "userMessage": "what law firm does Gwendolyn Hicks work at",
+  "cypherQuery": "\nMATCH (a:attorneys {firstName: \"Gwendolyn\", lastName: \"Hicks\"})-[:WORKS_AT]-(f:LawFirm)\nRETURN f\nLIMIT 1\n"
+}
+------------------------
+
+[2025-11-26T21:17:49.022Z]
+{
+  "userMessage": "https://www.linkedin.com/in/abizer-mamnoon/",
+  "cypherQuery": "RETURN 'https://www.linkedin.com/in/abizer-mamnoon/' as response\nLIMIT 5"
+>>>>>>> 79fd41d90b89aeea198dc5c23065a37325320ba4
 }
 ------------------------

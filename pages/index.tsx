@@ -76,14 +76,19 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
       </Head>
       {/* <Header /> */}
-      <main style={{ overflowY: "scroll", height: "100vh" }}>
+      <main style={{ overflowY: "scroll", height: "100vh", background: '#ffffff', color: '#000000' }}>
         <Grid container spacing={12}
+<<<<<<< HEAD
           sx={{ paddingTop: '8px', background: '#606060' }}
+=======
+          sx={{ paddingTop: '8px', background: 'transparent' }}
+>>>>>>> 79fd41d90b89aeea198dc5c23065a37325320ba4
         >
           <Grid item xs={2}
             style={{ verticalAlign: "center", }}
             sx={{
               width: '100%',
+<<<<<<< HEAD
               height: '100%',
               // removed decorative background image
               backgroundImage: 'none',
@@ -102,13 +107,58 @@ const Home: NextPage = () => {
                 src="/frank_transparent.png"
                 alt="Frank"
                 style={{ height: '60px', width: 'auto' }}
+=======
+              height: '100%,',
+              // backgroundImage: 'url(/shape3_top.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center', // Center the background image
+              backgroundRepeat: 'no-repeat', // Prevent the image from repeating
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, paddingLeft: 12, paddingTop: 8 }}>
+              <img
+                src="/talent_engines_logo.jpg"
+                alt="Talent Engines"
+                height={80}
+                style={{ width: 'auto', display: 'block' }}
+              />
+              <img
+                src="/frank.png"
+                alt="Frank"
+                height={48}
+                style={{ width: 'auto', display: 'block' }}
+>>>>>>> 79fd41d90b89aeea198dc5c23065a37325320ba4
               />
             </div>
           </Grid>
           <Grid item xs={9}
           >
+<<<<<<< HEAD
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
             </div>
+=======
+            <Stack direction="row" justifyContent={"center"} spacing={0} style={{ paddingLeft: 10 }}
+            >
+              
+              <Typography style={{ letterSpacing: "0.1em", color: "rgba(42, 96, 140, 1)", whiteSpace: "pre-wrap", textAlign: 'left', fontSize: "40px", fontWeight: 600 }}
+              >
+              </Typography>
+              {/* Switching to FontAwesome so I can make a favicon */}
+              
+              <div style={{
+                display: 'flex',
+                alignItems: 'flex-end',
+                marginLeft: '10px',
+                fontStyle: 'italic',
+                height: '2.5em'
+              }}>
+                <Typography variant="caption" display="block" gutterBottom
+                  style={{ textAlign: 'left', color: "rgba(42, 96, 140, 1)" }}
+                >
+                </Typography>
+              </div>
+            </Stack>
+>>>>>>> 79fd41d90b89aeea198dc5c23065a37325320ba4
           </Grid>
         
           <Grid item xs={1}
@@ -139,7 +189,10 @@ const Home: NextPage = () => {
                   </Select>
                 </FormControl>
                 }
+<<<<<<< HEAD
                 <LogoutLink />
+=======
+>>>>>>> 79fd41d90b89aeea198dc5c23065a37325320ba4
               </Stack>
             </Item>
           </Grid>

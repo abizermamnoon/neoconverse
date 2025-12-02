@@ -144,8 +144,7 @@ const openai = new OpenAI({
 
 export const runSearch = async (searchQuery: string) => {
   const authToken = process.env.perpToken;
-  console.log('search query:', searchQuery)
-  // Set the request options for Perplexity
+
   const options = {
     method: 'POST',
     headers: {
@@ -153,18 +152,14 @@ export const runSearch = async (searchQuery: string) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: "llama-3.1-sonar-small-128k-online",
+      model: "sonar",
       messages: [
         { role: "system", content: "Be precise and concise." },
         { role: "user", content: searchQuery }
       ],
-      max_tokens: 200,  // Adjust max_tokens as needed
+      max_tokens: 200,
       temperature: 0.2,
       top_p: 0.9,
-      return_images: false,
-      return_related_questions: false,
-      search_recency_filter: "month",
-      top_k: 0,
       stream: false,
       presence_penalty: 0,
       frequency_penalty: 1
@@ -172,24 +167,25 @@ export const runSearch = async (searchQuery: string) => {
   };
 
   try {
-    // Make the fetch request to Perplexity
-    const response = await fetch('https://api.perplexity.ai/chat/completions', options);
-    
-    // Handle potential non-200 responses
+    const response = await fetch(
+      'https://api.perplexity.ai/chat/completions',
+      options
+    );
+
     if (!response.ok) {
+      const errJson = await response.text();
+      console.error('Error response JSON:', errJson);
       throw new Error(`HTTP Error: ${response.status}`);
     }
 
     const data = await response.json();
 
-    // Format the response
-    const responseData = {
+    return {
       query: searchQuery,
       response: data.choices?.[0]?.message?.content || 'No response content'
     };
 
-    return responseData;
-  } catch (err) {
+  } catch (err: any) {
     console.error('Error fetching from Perplexity API:', err);
     throw new Error('Error fetching data from Perplexity: ' + err.message);
   }
