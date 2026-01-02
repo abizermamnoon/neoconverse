@@ -221,7 +221,7 @@ const ApplicationContent: NextPage = () => {
                     name: "User",
                      // Default avatar for user
                 },
-                avatar: "/userProfile.jpeg",
+                avatar: "/userProfile.png",
                 isChart: false,
                 isSearch: false,
                 isCrystalKnows: false,
@@ -362,7 +362,7 @@ const ApplicationContent: NextPage = () => {
       author: {
           name: "User"
       },
-      avatar: "/userProfile.jpeg",
+                avatar: "/userProfile.png",
       isChart: false,
       isSearch: false,
       isCrystalKnows: false,

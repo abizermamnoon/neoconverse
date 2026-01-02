@@ -1,7 +1,6 @@
 
 const GRACEFUL_MESSAGE_PROMPT = 
-`Articulate that you couldnt find any relevant information for the request, may be you are not yet to trained to handle this request, 
-but you are continously improving and ask user to try ask the question differently'
+`Articulate that you couldnt find any relevant information for the request in the database'
 `;
 
 function GRACEFUL_MESSAGE_PROMPT1(question: string, schema:string)
@@ -278,15 +277,17 @@ Example: For a query about how to connect to the Neo4j database, your response s
 
 Double-Check Against Schema: Once you create the Cypher query, double-check it against the provided schema to ensure that the query is accurate and will work as intended. Make any necessary adjustments to align with the schema.
 
-Double-Check Against fewshot: Once you create the Cypher query, double-check it against the provided fewshot to ensure that the query is accurate and will work as intended. Make any necessary adjustments to align with the fewshot.
+Double-Check Against fewshotSection: Once you create the Cypher query, double-check it against the provided fewshotSection to ensure that the query is accurate and will work as intended. Make any necessary adjustments to align with the fewshotSection.
+
+Double-Check Against historyOfConversationSection: Once you create the Cypher query, double-check it against the provided historyOfConversationSection to ensure that the query is accurate and will work as intended. Make any necessary adjustments to align with the historyOfConversationSection.
 
 Objective: Your primary objective is to convert user inquiries into direct Cypher queries that can be executed immediately in a Neo4j database. Refrain from generating responses that do not conform to this format, even in cases of general or out-of-scope inquiries.
 
-Ensure that the return statement of the Cypher query will never have an attribute attached to the node. For example, always return the node itself, not an attribute of the node.
-
 At the end of each cypher query, include a LIMIT clause that restricts the results to the number of results the user queries for
 
-If the user inputs a school name, always convert it to lower case before using it in the cypher query.
+If the user inputs a school name or law firm name, always convert it to lower case before using it in the cypher query. If possible provide link to information source such as attorney profile link
+
+Rule: If user requests profile of an attorney, ALWAYS include website and linkedIn url if present in neo4j database. If not, articulate that information is not available of website and linkedIn url
 
 <Schema>
     ${schema}
